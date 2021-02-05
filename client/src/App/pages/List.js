@@ -17,7 +17,10 @@ function List() {
   // Retrieves the list of items from the Express app
   const getList = () => {
     fetch('/api/getList')
-      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
       .then((list) => {
         console.log(list);
         setList([...list]);

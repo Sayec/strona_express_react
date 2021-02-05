@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import './styles/app.scss';
 import Home from './pages/Home';
 import List from './pages/List';
+import Default from './pages/Default';
 
 // class App extends Component {
 //   render() {
@@ -28,6 +29,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/list" component={List} />
+        <Route path="/" component={Default} />
       </Switch>
     </div>
   );
