@@ -1,0 +1,22 @@
+.list-container {
+  background-color: #999;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.list-element {
+  background-color: green;
+  height: 300px;
+  flex-basis: 25%;
+  margin: 20px 5px;
+}
+.flex-dummy {
+  height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}

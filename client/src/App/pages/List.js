@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function List() {
   // Initialize the state
@@ -29,11 +30,14 @@ function List() {
       {/* Check to see if any items are found*/}
       <div>${list.length}</div>
       {list.length ? (
-        <div>
+        <div className="list-container">
           {/* Render the list of items */}
           {list.map((item) => {
-            return <div>{item}</div>;
+            return <div className="list-element">{item}</div>;
           })}
+          <div class="list-element flex-dummy"></div>
+          <div class="list-element flex-dummy"></div>
+          <div class="list-element flex-dummy"></div>
         </div>
       ) : (
         <div>
@@ -41,6 +45,9 @@ function List() {
         </div>
       )}
       <div>TEST</div>
+      <Link to={'./'}>
+        <button variant="raised">Home</button>
+      </Link>
     </div>
   );
 }
