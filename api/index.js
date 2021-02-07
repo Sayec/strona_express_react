@@ -2,13 +2,18 @@ const cookieSession = require('cookie-session');
 const express = require('express');
 const config = require('./config');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 
+const handleFormPost = require('./handlerFormPost');
+
 const homeRoutes = require('./routes/home');
 const listRoutes = require('./routes/list');
+
 // Serve the static files from the React app
 // app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('/', express.static(path.join(__dirname, './public')));
 app.use(
   cookieSession({
     name: 'session',
@@ -18,7 +23,7 @@ app.use(
 );
 listRoutes(app);
 homeRoutes(app, path);
-
+handleFormPost(app, path, fs);
 // An api endpoint that returns a short list of items
 // app.get('/api/getList', (req, res) => {
 //   const list = ['item1', 'item2', 'item3', 'dsadsa', 'test123'];
@@ -28,7 +33,6 @@ homeRoutes(app, path);
 // });
 
 // Handles any requests that don't match the ones above
-console.log('tes23t');
 // app.get('*', (req, res) => {
 //   console.log('test');
 //   res.sendFile(path.join(__dirname + '/client/build/index.html'));
