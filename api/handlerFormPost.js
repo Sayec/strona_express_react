@@ -1,4 +1,5 @@
 function handleFormPost(app, path, fs) {
+  const Photos = require('./models/photo');
   const multer = require('multer');
 
   const handleError = (err, res) => {
@@ -17,21 +18,36 @@ function handleFormPost(app, path, fs) {
     '/upload',
     upload.single('file' /* name attribute of <file> element in your form */),
     (req, res) => {
-      console.log('jestem');
+      console.log(req.body);
       const tempPath = req.file.path;
       const targetPath = path.join(
         __dirname,
-        `./uploads/${req.file.originalname}`
+        `./uploads/${req.body.category}/${req.file.originalname}`
+      );
+      const targetDirectory = path.join(
+        __dirname,
+        `./uploads/${req.body.category}`
       );
       console.log(req.file.originalname);
       console.log(targetPath);
+      if (!fs.existsSync(targetDirectory)) {
+        fs.mkdirSync(targetDirectory);
+      }
       if (
         path.extname(req.file.originalname).toLowerCase() === '.png' ||
         path.extname(req.file.originalname).toLowerCase() === '.jpg'
       ) {
         fs.rename(tempPath, targetPath, (err) => {
           if (err) return handleError(err, res);
-
+          const photoElement = new Photos({
+            title: 'testowy',
+            category: req.body.category,
+            description: 'test',
+            url: targetPath,
+          });
+          photoElement.save((err) => {
+            console.log(err);
+          });
           res.status(200).contentType('text/plain').end('File uploaded!');
         });
       } else {

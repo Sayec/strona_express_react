@@ -1,32 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
-// class Home extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <h1>Project Home</h1>
-//         {/* Link to List.js */}
-//         <Link to={'./list'}>
-//           <button variant="raised">My List</button>
-//         </Link>
-//       </div>
-//     );
-//   }
-// }
-const Home = () => {
+const Id = () => {
   const [values, setValues] = useState({
     fName: '',
     sName: '',
     url: '',
   });
   const [submitted, setSubmitted] = useState(false);
-
-  useEffect(() => {
-    fetch('/l')
-      .then((res) => res.json())
-      .then((resa) => console.log(resa));
-  }, []);
 
   const handleFNameChange = (e) => {
     e.persist();
@@ -59,22 +40,12 @@ const Home = () => {
     console.log(values.url);
     setSubmitted(true);
   };
-
+  let { category } = useParams();
+  console.log(category);
   return (
-    <div className="App">
-      <h1>Project Home</h1>
-      {/* Link to List.js */}
-      <Link to={'./list'}>
-        <button variant="raised">My List</button>
-      </Link>
-      <Link to={'./admin'}>
-        <button variant="raised">Logowanie</button>
-      </Link>
-      <Link to={'./5'}>
-        <button variant="raised">5</button>
-      </Link>
-      <Link className="test">Test</Link>
-      {/* <form
+    <div>
+      {' '}
+      <form
         method="post"
         enctype="multipart/form-data"
         action="/upload"
@@ -89,14 +60,15 @@ const Home = () => {
         <br />
         <input type="file" name="file" onChange={handleUrlChange} />
         <br />
+        <input type="hidden" name="category" value={category} />
         <button class="form-field" type="submit">
           Register
         </button>
       </form>
       {submitted && (
         <div class="success-message">Success! Thank you for registering</div>
-      )} */}
+      )}
     </div>
   );
 };
-export default Home;
+export default Id;

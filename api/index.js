@@ -3,8 +3,21 @@ const express = require('express');
 const config = require('./config');
 const path = require('path');
 const fs = require('fs');
+// mongodb+srv://admin:admin@cluster0.xli15.mongodb.net/<dbname>?retryWrites=true&w=majority
 
+const mongoose = require('mongoose');
 const app = express();
+
+mongoose.connect(config.db, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+  console.log('db connedc');
+});
 
 const handleFormPost = require('./handlerFormPost');
 
