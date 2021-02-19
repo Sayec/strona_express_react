@@ -64,16 +64,15 @@ const Home = () => {
     <div className="App">
       <h1>Project Home</h1>
       {/* Link to List.js */}
-      <Link to={'./list'}>
-        <button variant="raised">My List</button>
-      </Link>
-      <Link to={'./admin'}>
-        <button variant="raised">Logowanie</button>
-      </Link>
-      <Link to={'./5'}>
-        <button variant="raised">5</button>
-      </Link>
-      <Link className="test">Test</Link>
+      <nav>
+        <Link to={'./list'}>My List</Link>
+        <Link to={'./eq'}>E Q</Link>
+        <Link to={'./gallery'}>Galeria</Link>
+        <Link to={'./about'}>O mnie</Link>
+        <Link to={'./admin'}>Logowanie</Link>
+        <Link to={'./gallery/5'}>5</Link>
+        <Link className="test">Test</Link>
+      </nav>
       {/* <form
         method="post"
         enctype="multipart/form-data"

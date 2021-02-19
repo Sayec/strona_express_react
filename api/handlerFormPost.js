@@ -22,11 +22,11 @@ function handleFormPost(app, path, fs) {
       const tempPath = req.file.path;
       const targetPath = path.join(
         __dirname,
-        `./uploads/${req.body.category}/${req.file.originalname}`
+        `../client/src/uploads/${req.body.category}/${req.file.originalname}`
       );
       const targetDirectory = path.join(
         __dirname,
-        `./uploads/${req.body.category}`
+        `../client/src/uploads/${req.body.category}`
       );
       console.log(req.file.originalname);
       console.log(targetPath);

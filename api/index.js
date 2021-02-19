@@ -23,6 +23,7 @@ const handleFormPost = require('./handlerFormPost');
 
 const homeRoutes = require('./routes/home');
 const listRoutes = require('./routes/list');
+const galleryRoutes = require('./routes/gallery');
 
 // Serve the static files from the React app
 // app.use(express.static(path.join(__dirname, 'client/build')));
@@ -35,7 +36,9 @@ app.use(
   })
 );
 listRoutes(app);
+galleryRoutes(app, path, db);
 homeRoutes(app, path);
+
 handleFormPost(app, path, fs);
 // An api endpoint that returns a short list of items
 // app.get('/api/getList', (req, res) => {
