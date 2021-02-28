@@ -1,5 +1,7 @@
 const cookieSession = require('cookie-session');
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const config = require('./config');
 const path = require('path');
 const fs = require('fs');
@@ -7,7 +9,7 @@ const fs = require('fs');
 
 const mongoose = require('mongoose');
 const app = express();
-
+app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect(config.db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -35,6 +37,7 @@ app.use(
     maxAge: config.maxAgeSession, // 24 hours
   })
 );
+
 listRoutes(app);
 galleryRoutes(app, path, db);
 homeRoutes(app, path);

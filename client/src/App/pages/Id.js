@@ -40,8 +40,8 @@ const Id = () => {
     console.log(values.url);
     setSubmitted(true);
   };
-  let { category } = useParams();
-  console.log(category);
+  let { category, object } = useParams();
+  console.log(object);
   return (
     <div>
       {' '}
@@ -61,6 +61,7 @@ const Id = () => {
         <input type="file" name="file" onChange={handleUrlChange} />
         <br />
         <input type="hidden" name="category" value={category} />
+        <input type="hidden" name="object" value={object} />
         <button class="form-field" type="submit">
           Register
         </button>

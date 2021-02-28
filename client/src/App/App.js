@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './styles/app.scss';
 import Home from './pages/Home';
-import List from './pages/List';
 import Default from './pages/Default';
 import Id from './pages/Id';
 import Category from './pages/Category';
