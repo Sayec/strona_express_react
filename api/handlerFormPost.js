@@ -96,7 +96,11 @@ function handleFormPost(app, path, fs) {
           photoElement.save((err) => {
             console.log(err);
           });
-          res.status(200).contentType('text/plain').end('File uploaded!');
+
+          // res.status(200).contentType('text/plain').end('File uploaded!');
+          // res.status(200).end();
+          let categoryObject = `${req.body.category}/${req.body.object}`;
+          res.redirect('/gallery/' + categoryObject);
         });
       } else {
         fs.unlink(tempPath, (err) => {
@@ -110,5 +114,10 @@ function handleFormPost(app, path, fs) {
       }
     }
   );
+  app.post('/testdelete', (req, res) => {
+    if (err) {
+      console.log(err);
+    }
+  });
 }
 module.exports = handleFormPost;
