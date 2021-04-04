@@ -22,11 +22,11 @@ const Home = () => {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => {
-    fetch('/l')
-      .then((res) => res.json())
-      .then((resa) => console.log(resa));
-  }, []);
+  // useEffect(() => {
+  //   fetch('/l')
+  //     .then((res) => res.json())
+  //     .then((resa) => console.log(resa));
+  // }, []);
 
   const handleFNameChange = (e) => {
     e.persist();
@@ -73,28 +73,11 @@ const Home = () => {
         <Link to={'./gallery/5'}>5</Link>
         <Link className="test">Test</Link>
       </nav>
-      {/* <form
-        method="post"
-        enctype="multipart/form-data"
-        action="/upload"
-        // onSubmit={handleSubmit}
-      >
-        {' '}
-        <label for="fname">First name:</label> <br />
-        <input type="text" name="fname" onChange={handleFNameChange} /> <br />
-        <label for="lname">Last name:</label>
-        <br />
-        <input type="text" name="lname" onChange={handleSNameChange} />
-        <br />
-        <input type="file" name="file" onChange={handleUrlChange} />
-        <br />
-        <button class="form-field" type="submit">
-          Register
-        </button>
-      </form>
-      {submitted && (
-        <div class="success-message">Success! Thank you for registering</div>
-      )} */}
+      {/* <video width="400" controls>
+  <source src="mov_bbb.mp4" type="video/mp4">
+  <source src="mov_bbb.ogg" type="video/ogg">
+  Your browser does not support HTML video.
+</video> */}
     </div>
   );
 };

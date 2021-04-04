@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Element from './Element';
 
 const ObjectComp = () => {
   const [values, setValues] = useState({
@@ -40,23 +41,26 @@ const ObjectComp = () => {
     //   });
   };
   const allCategoryElements = objectElements.map((element) => {
-    const url = element.url;
+    const { _id, url, title } = element;
+    // const url = element.url;
     const urlSplitted = url.split('\\');
     console.log(urlSplitted);
+
     return (
-      <div key={element._id}>
-        {element.title} {element.url}
-        <img
-          src={
-            require(`../../../src/uploads/${urlSplitted[10]}/${urlSplitted[11]}/${urlSplitted[12]}`)
-              .default
-          }
-          alt=""
-        />
-        <form method="POST" action="/testdelete">
-          <button>Usun</button>
-        </form>
-      </div>
+      <Element _id={_id} title={title} url={url} />
+      // <div key={element._id}>
+      //   {element.title} {element.url} {element._id}
+      //   <img
+      //     src={
+      //       require(`../../../src/uploads/${urlSplitted[10]}/${urlSplitted[11]}/${urlSplitted[12]}`)
+      //         .default
+      //     }
+      //     alt=""
+      //   />
+      //   <form method="POST" action="/testdelete">
+      //     <button>Usun</button>
+      //   </form>
+      // </div>
     );
   });
 

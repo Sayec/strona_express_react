@@ -9,7 +9,15 @@ const fs = require('fs');
 
 const mongoose = require('mongoose');
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
+// app.use(body.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect(config.db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -37,12 +45,16 @@ app.use(
     maxAge: config.maxAgeSession, // 24 hours
   })
 );
+// app.use(function (req, res, next) {
+//   res.setHeader('Content-Type', 'application/json');
+//   next();
+// });
 
 listRoutes(app);
 galleryRoutes(app, path, db);
 homeRoutes(app, path);
-
 handleFormPost(app, path, fs);
+
 // An api endpoint that returns a short list of items
 // app.get('/api/getList', (req, res) => {
 //   const list = ['item1', 'item2', 'item3', 'dsadsa', 'test123'];
