@@ -53,7 +53,7 @@ app.use(
 listRoutes(app);
 galleryRoutes(app, path, db);
 homeRoutes(app, path);
-handleFormPost(app, path, fs);
+handleFormPost(app, path, fs, db);
 
 // An api endpoint that returns a short list of items
 // app.get('/api/getList', (req, res) => {

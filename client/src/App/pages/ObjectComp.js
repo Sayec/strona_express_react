@@ -30,37 +30,19 @@ const ObjectComp = () => {
         console.log('HEJ' + objectElements);
         setObjectElements([...objectElements]);
       });
-    //   .then((res) => {
-    //     console.log(res);
-    //     return res.json();
-    //   })
-    //   .then((objectElements) => {
-    //     console.log(objectElements[3].category);
-    //     // gallery.length;
-    //     setObjectElements([...objectElements]);
-    //   });
   };
   const allCategoryElements = objectElements.map((element) => {
     const { _id, url, title } = element;
     // const url = element.url;
     const urlSplitted = url.split('\\');
-    console.log(urlSplitted);
 
     return (
-      <Element _id={_id} title={title} url={url} />
-      // <div key={element._id}>
-      //   {element.title} {element.url} {element._id}
-      //   <img
-      //     src={
-      //       require(`../../../src/uploads/${urlSplitted[10]}/${urlSplitted[11]}/${urlSplitted[12]}`)
-      //         .default
-      //     }
-      //     alt=""
-      //   />
-      //   <form method="POST" action="/testdelete">
-      //     <button>Usun</button>
-      //   </form>
-      // </div>
+      <Element
+        _id={_id}
+        title={title}
+        url={url}
+        refreshGallery={getGalleryObject}
+      />
     );
   });
 
@@ -74,7 +56,6 @@ const ObjectComp = () => {
       ...values,
       fName: e.target.value,
     }));
-    console.log(values.fName);
   };
   const handleSNameChange = (e) => {
     e.persist();
@@ -82,7 +63,6 @@ const ObjectComp = () => {
       ...values,
       sName: e.target.value,
     }));
-    console.log(values.sName);
   };
   const handleUrlChange = (e) => {
     e.persist();
@@ -90,7 +70,6 @@ const ObjectComp = () => {
       ...values,
       url: e.target.value,
     }));
-    console.log(values.url);
   };
   // console.log(gallery[0].url);
   return (
@@ -111,9 +90,9 @@ const ObjectComp = () => {
           // onSubmit={handleSubmit}
         >
           {' '}
-          <label for="fname">First name:</label> <br />
+          <label for="fname">Nazwa:</label> <br />
           <input type="text" name="fname" onChange={handleFNameChange} /> <br />
-          <label for="lname">Last name:</label>
+          <label for="lname">Opis:</label>
           <br />
           <input type="text" name="lname" onChange={handleSNameChange} />
           <br />
@@ -122,7 +101,7 @@ const ObjectComp = () => {
           <input type="hidden" name="category" value={category} />
           <input type="hidden" name="object" value={object} />
           <button class="form-field" type="submit" onClick={getGalleryObject}>
-            Register
+            Dodaj zdjęcie
           </button>
         </form>
       ) : null}

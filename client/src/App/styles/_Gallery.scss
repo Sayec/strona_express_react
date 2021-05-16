@@ -1,0 +1,7 @@
+.galleryStyles {
+  opacity: 1;
+  transition: 1s ease-in;
+}
+.galleryStyles.hidden {
+  opacity: 0;
+}

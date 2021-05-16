@@ -1,0 +1,13 @@
+.nav {
+  opacity: 1;
+  background-color: #333;
+  transition: 1s ease-in;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.nav.hidden {
+  opacity: 0;
+}

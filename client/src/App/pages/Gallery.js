@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import video from '../../uploads/siostry_botEZ_o_Bartoshu.mp4';
+import video from '../../uploads/Mateusz Socha -.mp4';
 
 const Gallery = () => {
   const [gallery, setGallery] = useState([]);
@@ -8,31 +8,35 @@ const Gallery = () => {
     categoryName: '',
   });
   const [videoTime, setVideoTime] = useState(0);
+  const [isGalleryHidden, setIsGalleryHidden] = useState(true);
   const videoRef = useRef();
+  const [isAdmin, setIsAdmin] = useState(true);
   useEffect(() => {
     getGallery();
     if (videoRef.current.duration) {
       sendTime();
       getTime();
+    } else {
+      getTime();
     }
+
+    setIsGalleryHidden(false);
+
     videoRef.current.currentTime = videoTime;
     videoRef.current.play();
   }, [videoTime, videoRef.current]);
   const getGallery = () => {
     fetch('/api/getGallery')
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((gallery) => {
         setGallery([...gallery]);
-        console.log(gallery[0].name);
       });
   };
   const getTime = () => {
     fetch('/api/getTime')
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((timeData) => {
@@ -50,18 +54,14 @@ const Gallery = () => {
       body: JSON.stringify({ durationTime: `${videoRef.current.duration}` }),
     })
       .then((result) => {
-        console.log(result);
         return result;
       })
-      .then((info) => {
-        console.log(info);
-      });
+      .then((info) => {});
   };
 
   const categoryLinks = gallery.map((category) => {
     return <div>{category.url}</div>;
   });
-  console.log(categoryLinks);
 
   const handleCategoryNameChange = (e) => {
     e.persist();
@@ -69,27 +69,26 @@ const Gallery = () => {
       ...values,
       categoryName: e.target.value,
     }));
-    console.log(values.categoryName);
   };
   return (
-    <div>
+    <div className={isGalleryHidden ? 'galleryStyles hidden' : 'galleryStyles'}>
       <video
         src={video}
         width="320"
         height="240"
-        controls
+        controls={isAdmin}
         autoPlay
         muted
         ref={videoRef}
         loop
         // src="/client/src/uploads/siostry_botEZ_o_Bartoshu.mp4"
       ></video>
-      <img
+      {/* <img
         src={
           require('../../../src/uploads/galaktyki/m42/a_rozjechane.jpg').default
         }
         alt=""
-      />
+      /> */}
       Galeria
       {/* <img src={require('../../uploads/a_rozjechane.jpg').default} alt="" /> */}
       {gallery.length > 0

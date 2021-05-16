@@ -1,9 +1,10 @@
 // const { default: Category } = require('../client/src/App/pages/Category');
 
-function handleFormPost(app, path, fs) {
+function handleFormPost(app, path, fs, db) {
   const Photos = require('./models/photo');
   const Categories = require('./models/category');
   const Objects = require('./models/object');
+  const ObjectId = require('mongodb').ObjectID;
   const multer = require('multer');
 
   const handleError = (err, res) => {
@@ -80,6 +81,7 @@ function handleFormPost(app, path, fs) {
       if (!fs.existsSync(targetDirectory)) {
         fs.mkdirSync(targetDirectory);
       }
+      console.log(req.body);
       if (
         path.extname(req.file.originalname).toLowerCase() === '.png' ||
         path.extname(req.file.originalname).toLowerCase() === '.jpg'
@@ -87,10 +89,10 @@ function handleFormPost(app, path, fs) {
         fs.rename(tempPath, targetPath, (err) => {
           if (err) return handleError(err, res);
           const photoElement = new Photos({
-            title: 'testowy',
+            title: req.body.fname,
             category: req.body.category,
             object: req.body.object,
-            description: 'test',
+            description: req.body.lname,
             url: targetPath,
           });
           photoElement.save((err) => {
@@ -114,10 +116,15 @@ function handleFormPost(app, path, fs) {
       }
     }
   );
-  app.post('/testdelete', (req, res) => {
-    if (err) {
-      console.log(err);
-    }
+  app.post('/deleteElement', (req, res) => {
+    console.log(req.body.url);
+    db.collection('photos').deleteOne({ _id: ObjectId(req.body.id) });
+    // let categoryObject = `${req.body.category}/${req.body.object}`;
+    // res.redirect('/gallery/' + categoryObject);
+    fs.unlink(req.body.url, function (err) {
+      if (err) return console.log(err);
+      console.log('usunieto');
+    });
   });
 }
 module.exports = handleFormPost;

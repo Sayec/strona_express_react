@@ -7,10 +7,15 @@ const Category = () => {
     objectName: '',
   });
   const [objects, setObjects] = useState([]);
-  // let { category, object } = useParams();
+  let { category } = useParams();
   useEffect(() => getObjects(), []);
   const getObjects = () => {
-    fetch('/api/getObjects')
+    fetch(
+      '/api/getObjects?' +
+        new URLSearchParams({
+          category,
+        })
+    )
       .then((res) => {
         console.log(res);
         return res.json();
@@ -56,7 +61,6 @@ const Category = () => {
       ...values,
       objectName: e.target.value,
     }));
-    console.log(values.objectName);
   };
   const urlSplitted = window.location.pathname.split('/');
   console.log(urlSplitted[urlSplitted.length - 1]);
@@ -77,17 +81,7 @@ const Category = () => {
       </div>
     );
   });
-  // console.log(gallery[0].url);
   return (
-    // <div>
-    //   {allCategoryElements}
-    //   {/* <img src={require('../../uploads/5/a_rozjechane.jpg').default} alt="" /> */}
-    //   {/* <Link to={'/gallery/m42'}>M42</Link> */}
-    //   <Link to={'./'}>
-    //     <button variant="raised">Home</button>
-    //   </Link>
-    //   <Link to={`/upload/${category}/${object}`}>Dodaj zdjęcie</Link>
-    // </div>
     <div>
       {window.location.pathname}
       {objects.length > 0
@@ -96,16 +90,9 @@ const Category = () => {
               {object.name}
             </Link>
           ))
-        : // <Link to={`/gallery/${gallery[3].category}`}>
-          //   {gallery[3].category}
-          // </Link>
-          null}
+        : null}
       <div>
-        <form
-          method="post"
-          // enctype="multipart/form-data"
-          action="/addObject"
-        >
+        <form method="post" action="/addObject">
           <input
             type="hidden"
             name="categoryname"
@@ -129,7 +116,5 @@ const Category = () => {
     </div>
   );
 };
-
-// tutaj tylko unikalne kategorie a w kolejnych pagach wrzucam w propsach kategorie i uzywam funkcji getGalleryCategory z tego pliku dla poszczegolnej kategorii
 
 export default Category;
