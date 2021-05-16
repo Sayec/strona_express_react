@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import video from '../../uploads/Mateusz Socha -.mp4';
+import video from '../../uploads/siostry_botEZ_o_Bartoshu.mp4';
 
 const Gallery = () => {
   const [gallery, setGallery] = useState([]);
