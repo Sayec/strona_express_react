@@ -24,7 +24,7 @@ const Category = () => {
         // console.log(gallery[3].category);
         // gallery.length;
         setObjects([...objects]);
-        console.log(objects[0].name);
+        // console.log(objects[0].name);
       });
   };
   // useEffect(() => getGalleryCategory(), []);
@@ -62,6 +62,25 @@ const Category = () => {
       objectName: e.target.value,
     }));
   };
+
+  const deleteObjectInCategory = (category, name) => {
+    // console.log(id);
+    fetch('/deleteObjectInCategory', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      // Accept: 'application/json',
+      // responseType: 'json',
+      body: JSON.stringify({ category, name }),
+    })
+      .then((result) => {
+        return result;
+      })
+      .then((info) => {});
+    getObjects();
+  };
+
   const urlSplitted = window.location.pathname.split('/');
   console.log(urlSplitted[urlSplitted.length - 1]);
   const allCategoryElements = categoryElements.map((element) => {
@@ -83,12 +102,23 @@ const Category = () => {
   });
   return (
     <div>
-      {window.location.pathname}
       {objects.length > 0
         ? objects.map((object) => (
-            <Link to={`${window.location.pathname}/${object.name}`}>
-              {object.name}
-            </Link>
+            <div>
+              <Link to={`${window.location.pathname}/${object.name}`}>
+                {object.name}
+              </Link>
+              <button
+                onClick={() =>
+                  deleteObjectInCategory(
+                    window.location.pathname.split('/')[2],
+                    object.name
+                  )
+                }
+              >
+                Usuń
+              </button>
+            </div>
           ))
         : null}
       <div>
@@ -105,8 +135,8 @@ const Category = () => {
             onChange={handleObjectNameChange}
           />
           <br />
-          <button class="form-field" type="submit">
-            Register
+          <button class="form-field" type="submit" onClick={getObjects}>
+            Dodaj kategorie
           </button>
         </form>
         <Link to={'./'}>

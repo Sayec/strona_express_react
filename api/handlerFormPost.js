@@ -1,5 +1,7 @@
 // const { default: Category } = require('../client/src/App/pages/Category');
 
+const { find } = require('./models/photo');
+
 function handleFormPost(app, path, fs, db) {
   const Photos = require('./models/photo');
   const Categories = require('./models/category');
@@ -59,7 +61,7 @@ function handleFormPost(app, path, fs, db) {
     if (!fs.existsSync(targetDirectory)) {
       fs.mkdirSync(targetDirectory);
     }
-    res.end('saddsa');
+    res.redirect('/gallery/' + req.body.categoryname);
   });
   app.post(
     '/upload',
@@ -123,8 +125,31 @@ function handleFormPost(app, path, fs, db) {
     // res.redirect('/gallery/' + categoryObject);
     fs.unlink(req.body.url, function (err) {
       if (err) return console.log(err);
-      console.log('usunieto');
+      console.log('usunieto element');
     });
+  });
+
+  app.post('/deleteObjectInCategory', (req, res) => {
+    const { category, name } = req.body;
+    let i;
+    console.log(req.body);
+    db.collection('objects').deleteOne({ category, name });
+    db.collection('photos')
+      .find({})
+      .toArray(function (err, result) {
+        if (err) throw err;
+        console.log(result);
+        for (i = 0; i < result.length; i++) {
+          fs.unlink(result[i].url, function (err) {
+            if (err) return console.log(err);
+            console.log('usunieto obiekt');
+          });
+        }
+      });
+    db.collection('photos').deleteMany({ category, object: name });
+    // console.log(test);
+    // let categoryObject = `${req.body.category}/${req.body.object}`;
+    // res.redirect('/gallery/' + categoryObject);
   });
 }
 module.exports = handleFormPost;

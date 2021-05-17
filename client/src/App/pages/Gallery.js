@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import video from '../../uploads/siostry_botEZ_o_Bartoshu.mp4';
 
 const Gallery = () => {
+  const [isTimeCounting, setIsTimeCounting] = useState(true);
+
   const [gallery, setGallery] = useState([]);
   const [values, setValues] = useState({
     categoryName: '',
@@ -12,19 +14,23 @@ const Gallery = () => {
   const videoRef = useRef();
   const [isAdmin, setIsAdmin] = useState(true);
   useEffect(() => {
+    getCount();
+    // console.log(isTimeCounting);
     getGallery();
-    if (videoRef.current.duration) {
+    // console.log(!isTimeCounting);
+
+    // videoRef.current.addEventListener('loadedmetadata', () => {
+    if (!isTimeCounting) {
+      console.log('halo');
       sendTime();
-      getTime();
-    } else {
-      getTime();
     }
+    getTime();
+    // });
 
     setIsGalleryHidden(false);
-
     videoRef.current.currentTime = videoTime;
     videoRef.current.play();
-  }, [videoTime, videoRef.current]);
+  }, [videoTime, videoRef.current, isTimeCounting]);
   const getGallery = () => {
     fetch('/api/getGallery')
       .then((res) => {
@@ -43,6 +49,7 @@ const Gallery = () => {
         setVideoTime(timeData);
       });
   };
+
   const sendTime = () => {
     fetch('/api/sendTime', {
       method: 'POST',
@@ -58,7 +65,16 @@ const Gallery = () => {
       })
       .then((info) => {});
   };
-
+  const getCount = () => {
+    fetch('/api/getCount')
+      .then((res) => {
+        return res.json();
+      })
+      .then((isCounting) => {
+        // console.log(isCounting);
+        setIsTimeCounting(isCounting);
+      });
+  };
   const categoryLinks = gallery.map((category) => {
     return <div>{category.url}</div>;
   });
@@ -81,29 +97,15 @@ const Gallery = () => {
         muted
         ref={videoRef}
         loop
-        // src="/client/src/uploads/siostry_botEZ_o_Bartoshu.mp4"
+        preload="metadata"
       ></video>
-      {/* <img
-        src={
-          require('../../../src/uploads/galaktyki/m42/a_rozjechane.jpg').default
-        }
-        alt=""
-      /> */}
       Galeria
-      {/* <img src={require('../../uploads/a_rozjechane.jpg').default} alt="" /> */}
       {gallery.length > 0
         ? gallery.map((category) => (
             <Link to={`/gallery/${category.name}`}>{category.name}</Link>
           ))
-        : // <Link to={`/gallery/${gallery[3].category}`}>
-          //   {gallery[3].category}
-          // </Link>
-          null}
-      <form
-        method="post"
-        // enctype="multipart/form-data"
-        action="/addCategory"
-      >
+        : null}
+      <form method="post" action="/addCategory">
         <label for="categoryname">Category Name:</label> <br />
         <input
           type="text"
@@ -121,7 +123,5 @@ const Gallery = () => {
     </div>
   );
 };
-
-// tutaj tylko unikalne kategorie a w kolejnych pagach wrzucam w propsach kategorie i uzywam funkcji getGalleryCategory z tego pliku dla poszczegolnej kategorii
 
 export default Gallery;

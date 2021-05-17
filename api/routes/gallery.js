@@ -31,19 +31,26 @@ function galleryRoutes(app, path, db) {
   });
   let time = 0;
   let newTime = 0;
+  let countTime = false;
   setInterval(() => {
-    if (newTime) {
-      time = ++time % Math.ceil(newTime);
-    } else {
-      time = ++time % 1;
+    if (countTime) {
+      if (newTime) {
+        time = ++time % Math.ceil(newTime);
+      } else {
+        time = ++time;
+      }
     }
   }, 1000);
 
   app.get('/api/getTime', (req, res) => {
+    // console.log(countTime);
     res.json(time);
   });
+  app.get('/api/getCount', (req, res) => {
+    res.json(countTime);
+  });
   app.post('/api/sendTime', function (req, res) {
-    console.log(req.body);
+    countTime = true;
     newTime = req.body.durationTime;
     console.log('wyslana wartosc' + newTime.durationTime);
     res.status(201).json({ some: 'response' });
