@@ -26,13 +26,13 @@ const Element = ({ _id, title, url, refreshGallery }) => {
       <button>{_id}</button>
       <button>{title}</button>
       <button>{url}</button>
-      {/* <img
+      <img
         src={
           require(`../../../src/uploads/${urlSplitted[10]}/${urlSplitted[11]}/${urlSplitted[12]}`)
             .default
         }
         alt=""
-      /> */}
+      />
       <button
         onClick={() =>
           deleteElement(_id, url, urlSplitted[10], urlSplitted[11])
