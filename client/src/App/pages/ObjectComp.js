@@ -21,9 +21,6 @@ const ObjectComp = () => {
         })
     )
       .then((res) => {
-        console.log(res);
-        console.log('here');
-        console.log(JSON.stringify(res));
         return res.json();
       })
       .then((objectElements) => {
@@ -33,7 +30,6 @@ const ObjectComp = () => {
   };
   const allCategoryElements = objectElements.map((element) => {
     const { _id, url, title } = element;
-    // const url = element.url;
     const urlSplitted = url.split('\\');
 
     return (
@@ -71,16 +67,13 @@ const ObjectComp = () => {
       url: e.target.value,
     }));
   };
-  // console.log(gallery[0].url);
   return (
     <div>
       {allCategoryElements}
-      {/* <img src={require('../../uploads/5/a_rozjechane.jpg').default} alt="" /> */}
-      {/* <Link to={'/gallery/m42'}>M42</Link> */}
-      <Link to={'./'}>
+
+      <Link to={'.'}>
         <button variant="raised">Home</button>
       </Link>
-      {/* <Link to={`/upload/${category}/${object}`}>Dodaj zdjęcie</Link> */}
       <button onClick={addButtonOnClick}>Dodaj zdjęcie</button>
       {isAddActive ? (
         <form
@@ -101,7 +94,7 @@ const ObjectComp = () => {
           <input type="hidden" name="category" value={category} />
           <input type="hidden" name="object" value={object} />
           <button class="form-field" type="submit" onClick={getGalleryObject}>
-            Dodaj zdjęcie
+            Dodaj
           </button>
         </form>
       ) : null}

@@ -88,21 +88,15 @@ const Gallery = () => {
   };
   return (
     <div className={isGalleryHidden ? 'galleryStyles hidden' : 'galleryStyles'}>
-      <video
-        src={video}
-        width="320"
-        height="240"
-        controls={isAdmin}
-        autoPlay
-        muted
-        ref={videoRef}
-        loop
-        preload="metadata"
-      ></video>
       Galeria
       {gallery.length > 0
         ? gallery.map((category) => (
-            <Link to={`/gallery/${category.name}`}>{category.name}</Link>
+            <Link to={`/gallery/${category.name}/`}>
+              <div className="insideGall">
+                <div className="blockDiv"></div>
+                <span>{category.name}</span>
+              </div>
+            </Link>
           ))
         : null}
       <form method="post" action="/addCategory">
@@ -117,9 +111,20 @@ const Gallery = () => {
           Register
         </button>
       </form>
-      <Link to={'./'}>
+      <Link to={'../'}>
         <button variant="raised">Home</button>
       </Link>
+      <video
+        src={video}
+        width="320"
+        height="240"
+        controls={isAdmin}
+        autoPlay
+        muted
+        ref={videoRef}
+        loop
+        preload="metadata"
+      ></video>
     </div>
   );
 };

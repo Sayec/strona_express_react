@@ -17,44 +17,13 @@ const Category = () => {
         })
     )
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((objects) => {
-        // console.log(gallery[3].category);
-        // gallery.length;
         setObjects([...objects]);
-        // console.log(objects[0].name);
       });
   };
-  // useEffect(() => getGalleryCategory(), []);
-  // const getGalleryCategory = () => {
-  //   fetch(
-  //     '/api/getGalleryCategory?' +
-  //       new URLSearchParams({
-  //         category,
-  //         object,
-  //       })
-  //   )
-  //     .then((res) => {
-  //       console.log(res);
-  //       console.log(JSON.stringify(res));
-  //       return res.json();
-  //     })
-  //     .then((categoryElements) => {
-  //       console.log('HEJ' + categoryElements);
-  //       setCategoryElements([...categoryElements]);
-  //     });
-  // .then((res) => {
-  //   console.log(res);
-  //   return res.json();
-  // })
-  // .then((categoryElements) => {
-  //   console.log(categoryElements[3].category);
-  //   // gallery.length;
-  //   setCategoryElements([...categoryElements]);
-  // });
-  // };
+
   const handleObjectNameChange = (e) => {
     e.persist();
     setValues((values) => ({
@@ -64,14 +33,11 @@ const Category = () => {
   };
 
   const deleteObjectInCategory = (category, name) => {
-    // console.log(id);
     fetch('/deleteObjectInCategory', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      // Accept: 'application/json',
-      // responseType: 'json',
       body: JSON.stringify({ category, name }),
     })
       .then((result) => {
@@ -105,7 +71,7 @@ const Category = () => {
       {objects.length > 0
         ? objects.map((object) => (
             <div>
-              <Link to={`${window.location.pathname}/${object.name}`}>
+              <Link to={`${window.location.pathname}` + `${object.name}`}>
                 {object.name}
               </Link>
               <button
@@ -139,7 +105,7 @@ const Category = () => {
             Dodaj kategorie
           </button>
         </form>
-        <Link to={'./'}>
+        <Link to={'../'}>
           <button variant="raised">Home</button>
         </Link>
       </div>

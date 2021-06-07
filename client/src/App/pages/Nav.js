@@ -10,17 +10,18 @@ const Nav = () => {
   return (
     <div className="App">
       <h1>Project Nav</h1>
-      <nav className={isHidden ? 'nav hidden' : 'nav'}>
-        <Link to={'/eq'}>E Q</Link>
-        <Link to={'/gallery'}>Galeria</Link>
-        <Link to={'/about'}>O mnie</Link>
-        <Link to={'/admin'}>Logowanie</Link>
-        {/* <Link to={'/gallery/5'}>5</Link> */}
-        <Link className="test">Test</Link>
-      </nav>
-      <button className="hideMenu" onClick={handleHideMenu}>
-        Hide Nav
-      </button>
+      <div className="nav-container">
+        <a className="hideMenu" onClick={handleHideMenu}>
+          <i class="fas fa-chevron-circle-right"></i>
+        </a>
+        <nav className={isHidden ? 'nav hidden' : 'nav'}>
+          <Link to={'/eq'}>E Q</Link>
+          <Link to={'/gallery'}>Galeria</Link>
+          <Link to={'/about'}>O mnie</Link>
+          <Link to={'/admin'}>Logowanie</Link>
+          {/* <Link className="test">Test</Link> */}
+        </nav>
+      </div>
     </div>
   );
 };
