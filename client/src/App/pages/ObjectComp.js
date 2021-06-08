@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import Element from './Element';
 
 const ObjectComp = () => {
+  const [modalVisible, setModalVisible] = useState(false);
   const [values, setValues] = useState({
     fName: '',
     sName: '',
@@ -28,6 +29,8 @@ const ObjectComp = () => {
         setObjectElements([...objectElements]);
       });
   };
+  let modal = document.getElementsByClassName('modal-container')[0];
+  let modalData = document.getElementsByClassName('modal-content')[0];
   const allCategoryElements = objectElements.map((element) => {
     const { _id, url, title } = element;
     const urlSplitted = url.split('\\');
@@ -38,9 +41,35 @@ const ObjectComp = () => {
         title={title}
         url={url}
         refreshGallery={getGalleryObject}
+        modalData={modalData}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
       />
     );
   });
+  // useEffect(() => {
+
+  // window.addEventListener('click', (e) => {
+  //   // e.preventDefault();
+  //   // modal.style.marginTop = '300px';
+  //   console.log(e.target);
+  //   // console.log(modal);
+  //   if (e.target == modal) {
+  //     console.log('ds');
+  //     setModalVisible(!modalVisible);
+  //   }
+  // });
+  window.onclick = function (event) {
+    console.log(event.target);
+    console.log(modal);
+    console.log(event.target.src);
+    if (event.target == modal) {
+      console.log('xD');
+      setModalVisible(!modalVisible);
+      // modal.style.display = 'none';
+    }
+  };
+  // }, []);
 
   const addButtonOnClick = () => {
     console.log('zmiana');
@@ -69,8 +98,19 @@ const ObjectComp = () => {
   };
   return (
     <div>
+      <span>{modalVisible ? 'tak' : 'nie'}</span>
       {allCategoryElements}
-
+      <div
+        className={
+          modalVisible ? 'modal-container modal-visible' : 'modal-container'
+        }
+      >
+        <div className="modal-content">
+          <img alt="" />
+          {/* src={require(`../../../${url}`).default} */}
+          <h3></h3>
+        </div>
+      </div>
       <Link to={'.'}>
         <button variant="raised">Home</button>
       </Link>
