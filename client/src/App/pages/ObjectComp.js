@@ -9,6 +9,7 @@ const ObjectComp = () => {
     sName: '',
     url: '',
   });
+  const [searchName, setSearchName] = useState('');
   const [objectElements, setObjectElements] = useState([]);
   const [isAddActive, setIsAddActive] = useState(false);
   let { category, object } = useParams();
@@ -31,45 +32,53 @@ const ObjectComp = () => {
   };
   let modal = document.getElementsByClassName('modal-container')[0];
   let modalData = document.getElementsByClassName('modal-content')[0];
-  const allCategoryElements = objectElements.map((element) => {
-    const { _id, url, title } = element;
-    const urlSplitted = url.split('\\');
-
-    return (
-      <Element
-        _id={_id}
-        title={title}
-        url={url}
-        refreshGallery={getGalleryObject}
-        modalData={modalData}
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-      />
-    );
-  });
-  // useEffect(() => {
-
-  // window.addEventListener('click', (e) => {
-  //   // e.preventDefault();
-  //   // modal.style.marginTop = '300px';
-  //   console.log(e.target);
-  //   // console.log(modal);
-  //   if (e.target == modal) {
-  //     console.log('ds');
-  //     setModalVisible(!modalVisible);
-  //   }
-  // });
+  let elementList = () => {
+    switch (searchName) {
+      case '':
+        return objectElements.map((element) => {
+          const { _id, url, title } = element;
+          return (
+            <Element
+              _id={_id}
+              title={title}
+              url={url}
+              refreshGallery={getGalleryObject}
+              modalData={modalData}
+              modalVisible={modalVisible}
+              setModalVisible={setModalVisible}
+            />
+          );
+        });
+      default:
+        return objectElements
+          .filter((element) => {
+            const { _id, url, title } = element;
+            return title.toLowerCase().includes(searchName.toLowerCase());
+          })
+          .map((element) => {
+            const { _id, url, title } = element;
+            return (
+              <Element
+                _id={_id}
+                title={title}
+                url={url}
+                refreshGallery={getGalleryObject}
+                modalData={modalData}
+                modalVisible={modalVisible}
+                setModalVisible={setModalVisible}
+              />
+            );
+          });
+    }
+  };
   window.onclick = function (event) {
     console.log(event.target);
     console.log(modal);
     console.log(event.target.src);
     if (event.target == modal) {
-      console.log('xD');
       setModalVisible(!modalVisible);
-      // modal.style.display = 'none';
     }
   };
-  // }, []);
 
   const addButtonOnClick = () => {
     console.log('zmiana');
@@ -96,10 +105,25 @@ const ObjectComp = () => {
       url: e.target.value,
     }));
   };
+  const handleSearch = (e) => {
+    e.persist();
+    setSearchName(e.target.value);
+  };
   return (
     <div>
-      <span>{modalVisible ? 'tak' : 'nie'}</span>
-      {allCategoryElements}
+      {/* <span>{modalVisible ? 'tak' : 'nie'}</span> */}
+      <label for="fname">Wyszukaj:</label> <br />
+      <input type="text" value={searchName} onChange={handleSearch} /> <br />
+      <div className="elements-container">
+        {/* {allCategoryElements} {allCategoryElements} {allCategoryElements}{' '}
+        {allCategoryElements} */}
+        {elementList()}
+        {elementList()}
+        {elementList()}
+        {elementList()}
+        <div className="break-line"></div>
+        <div className="break-line"></div>
+      </div>
       <div
         className={
           modalVisible ? 'modal-container modal-visible' : 'modal-container'

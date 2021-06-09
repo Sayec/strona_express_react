@@ -1,8 +1,18 @@
-div.elementContainer {
-  img {
-    &:hover {
-      cursor: pointer;
-    }
+div.elements-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  div {
+    flex-basis: 30%;
+    height: 30vh;
+  }
+  div.break-line {
+    // flex-grow: 1;
+    // display: none;
+    flex-basis: 30%;
+    padding: 0px;
+    height: 0px;
   }
 }
 

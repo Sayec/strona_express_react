@@ -9,7 +9,6 @@ const Nav = () => {
 
   return (
     <div className="App">
-      <h1>Project Nav</h1>
       <div className="nav-container">
         <a className="hideMenu" onClick={handleHideMenu}>
           <i class="fas fa-chevron-circle-right"></i>

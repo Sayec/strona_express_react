@@ -42,9 +42,9 @@ const Element = ({
   return (
     <div>
       <div className="elementContainer">
-        <button>{_id}</button>
+        {/* <button>{_id}</button> */}
         <button>{title}</button>
-        <button>{url}</button>
+        {/* <button>{url}</button> */}
 
         <img
           src={require(`../../../${url}`).default}

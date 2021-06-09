@@ -12,7 +12,7 @@ import ObjectComp from './ObjectComp';
 
 const Page = () => {
   return (
-    <div>
+    <div className="page-container">
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />

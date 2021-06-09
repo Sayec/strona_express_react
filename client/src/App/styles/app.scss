@@ -12,10 +12,6 @@
   height: 40vmin;
   pointer-events: none;
 }
-img {
-  height: 200px;
-  width: 200px;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -53,3 +49,4 @@ img {
 @import './Gallery';
 @import './Element';
 @import './ObjectComp';
+@import './Page';
