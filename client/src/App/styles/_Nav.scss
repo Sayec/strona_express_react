@@ -3,6 +3,7 @@
   overflow: hidden;
   position: relative;
   height: 10vh;
+  margin-bottom: 20px;
   .nav {
     opacity: 1;
     transform: translate(-50%, -50%);
@@ -38,8 +39,6 @@
 
   .nav.hidden {
     opacity: 1;
-    // transform: translateX(0%);
     left: 50%;
-    // transform: translate(-50%, -50%);
   }
 }

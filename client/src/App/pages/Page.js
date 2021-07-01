@@ -21,7 +21,6 @@ const Page = () => {
         <Route path="/upload/:category/:object" component={Id} />
         <Route path="/gallery/:category/:object" component={ObjectComp} />
         <Route path="/gallery/:category" component={Category} />
-
         <Route path="/" component={Default} />
       </Switch>
     </div>

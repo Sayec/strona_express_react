@@ -111,12 +111,16 @@ const ObjectComp = () => {
   };
   return (
     <div>
-      {/* <span>{modalVisible ? 'tak' : 'nie'}</span> */}
-      <label for="fname">Wyszukaj:</label> <br />
-      <input type="text" value={searchName} onChange={handleSearch} /> <br />
+      <div className="searchForm">
+        <input
+          type="text"
+          placeholder="Wyszukaj..."
+          value={searchName}
+          onChange={handleSearch}
+        />
+      </div>
+
       <div className="elements-container">
-        {/* {allCategoryElements} {allCategoryElements} {allCategoryElements}{' '}
-        {allCategoryElements} */}
         {elementList()}
         {elementList()}
         {elementList()}
@@ -131,7 +135,6 @@ const ObjectComp = () => {
       >
         <div className="modal-content">
           <img alt="" />
-          {/* src={require(`../../../${url}`).default} */}
           <h3></h3>
         </div>
       </div>
@@ -140,12 +143,7 @@ const ObjectComp = () => {
       </Link>
       <button onClick={addButtonOnClick}>Dodaj zdjęcie</button>
       {isAddActive ? (
-        <form
-          method="post"
-          enctype="multipart/form-data"
-          action="/upload"
-          // onSubmit={handleSubmit}
-        >
+        <form method="post" enctype="multipart/form-data" action="/upload">
           {' '}
           <label for="fname">Nazwa:</label> <br />
           <input type="text" name="fname" onChange={handleFNameChange} /> <br />

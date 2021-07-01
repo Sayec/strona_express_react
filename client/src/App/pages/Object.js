@@ -22,15 +22,6 @@ const Object = () => {
         console.log('HEJ' + categoryElements);
         setCategoryElements([...categoryElements]);
       });
-    // .then((res) => {
-    //   console.log(res);
-    //   return res.json();
-    // })
-    // .then((categoryElements) => {
-    //   console.log(categoryElements[3].category);
-    //   // gallery.length;
-    //   setCategoryElements([...categoryElements]);
-    // });
   };
   const allCategoryElements = categoryElements.map((element) => {
     const url = element.url;
@@ -49,12 +40,9 @@ const Object = () => {
       </div>
     );
   });
-  // console.log(gallery[0].url);
   return (
     <div>
       {allCategoryElements}
-      {/* <img src={require('../../uploads/5/a_rozjechane.jpg').default} alt="" /> */}
-      {/* <Link to={'/gallery/m42'}>M42</Link> */}
       <Link to={'./'}>
         <button variant="raised">Home</button>
       </Link>
@@ -62,7 +50,5 @@ const Object = () => {
     </div>
   );
 };
-
-// tutaj tylko unikalne kategorie a w kolejnych pagach wrzucam w propsach kategorie i uzywam funkcji getGalleryCategory z tego pliku dla poszczegolnej kategorii
 
 export default Object;
