@@ -4,7 +4,7 @@ function homeRoutes(app, path) {
   //   const list = ['item1', 'item2', 'item3', 'item32321321'];
   //   res.json(list);
   // });
-  app.get('*', (req, res) => {
+  app.get('/', (req, res) => {
     const list = ['item3', 'dsadsa', 'test123'];
     console.log(list);
     // console.log(__dirname);
