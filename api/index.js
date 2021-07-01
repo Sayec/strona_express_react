@@ -37,10 +37,7 @@ const galleryRoutes = require('./routes/gallery');
 
 // Serve the static files from the React app
 // app.use(express.static(path.join(__dirname, 'client/build')));
-if (process.env.NODE_ENV === 'production') {
-  // Exprees will serve up production assets
-  app.use(express.static('client/build'));
-}
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   cookieSession({
     name: 'session',
