@@ -28,8 +28,8 @@ const Gallery = () => {
     // });
 
     setIsGalleryHidden(false);
-    videoRef.current.currentTime = videoTime;
-    videoRef.current.play();
+//     videoRef.current.currentTime = videoTime;
+//     videoRef.current.play();
   }, [videoTime, videoRef.current, isTimeCounting]);
   const getGallery = () => {
     fetch('/api/getGallery')
@@ -58,7 +58,7 @@ const Gallery = () => {
       },
       // Accept: 'application/json',
       // responseType: 'json',
-      body: JSON.stringify({ durationTime: `${videoRef.current.duration}` }),
+//       body: JSON.stringify({ durationTime: `${videoRef.current.duration}` }),
     })
       .then((result) => {
         return result;
