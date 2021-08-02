@@ -36,11 +36,12 @@ const ObjectComp = () => {
     switch (searchName) {
       case '':
         return objectElements.map((element) => {
-          const { _id, url, title } = element;
+          const { _id, url, title, description } = element;
           return (
             <Element
               _id={_id}
               title={title}
+              description={description}
               url={url}
               refreshGallery={getGalleryObject}
               modalData={modalData}
@@ -52,16 +53,18 @@ const ObjectComp = () => {
       default:
         return objectElements
           .filter((element) => {
-            const { _id, url, title } = element;
+            const { _id, url, title, description } = element;
             return title.toLowerCase().includes(searchName.toLowerCase());
           })
           .map((element) => {
-            const { _id, url, title } = element;
+            // const { _id, url, title } = element;
+            const { title, description } = element;
             return (
               <Element
-                _id={_id}
+                // _id={_id}
                 title={title}
-                url={url}
+                description={description}
+                // url={url}
                 refreshGallery={getGalleryObject}
                 modalData={modalData}
                 modalVisible={modalVisible}
@@ -75,7 +78,7 @@ const ObjectComp = () => {
     console.log(event.target);
     console.log(modal);
     console.log(event.target.src);
-    if (event.target == modal) {
+    if (event.target === modal) {
       setModalVisible(!modalVisible);
     }
   };
@@ -136,6 +139,7 @@ const ObjectComp = () => {
         <div className="modal-content">
           <img alt="" />
           <h3></h3>
+          <p></p>
         </div>
       </div>
       <Link to={'.'}>

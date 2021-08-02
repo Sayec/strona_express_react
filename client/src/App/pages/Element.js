@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 const Element = ({
   _id,
   title,
+  description,
   url,
   refreshGallery,
   modalData,
@@ -36,6 +37,7 @@ const Element = ({
 
     modalData.children[0].src = myImgPath;
     modalData.children[1].innerHTML = `${title}`;
+    modalData.children[2].innerHTML = `${description}`;
     console.log(modalData.children[0].src);
   }
   const urlSplitted = url.split('\\');

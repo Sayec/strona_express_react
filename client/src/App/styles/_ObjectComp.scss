@@ -55,6 +55,14 @@ div.modal-container {
       top: 5%;
       left: 50%;
       transform: translate(-50%, -50%);
+      font-size: 26px;
+    }
+    p {
+      color: rgb(122, 168, 255);
+      position: absolute;
+      bottom: 2%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 }

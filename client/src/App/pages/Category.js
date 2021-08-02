@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Category = () => {
   const [categoryElements, setCategoryElements] = useState([]);
@@ -9,18 +10,29 @@ const Category = () => {
   const [objects, setObjects] = useState([]);
   let { category } = useParams();
   useEffect(() => getObjects(), []);
+  // const getObjects = () => {
+  //   fetch(
+  //     '/api/getObjects?' +
+  //       new URLSearchParams({
+  //         category,
+  //       })
+  //   )
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((objects) => {
+  //       console.log(objects);
+  //       setObjects([...objects]);
+  //     });
+  // };
+
   const getObjects = () => {
-    fetch(
-      '/api/getObjects?' +
-        new URLSearchParams({
-          category,
-        })
-    )
+    axios
+      .get('/api/getObjects?' + new URLSearchParams({ category }))
       .then((res) => {
-        return res.json();
-      })
-      .then((objects) => {
-        setObjects([...objects]);
+        console.log(res.data);
+        setObjects([...res.data]);
+        // return res.json();
       });
   };
 
