@@ -53,18 +53,18 @@ const ObjectComp = () => {
       default:
         return objectElements
           .filter((element) => {
-            const { _id, url, title, description } = element;
+            const { _id, url, title } = element;
             return title.toLowerCase().includes(searchName.toLowerCase());
           })
           .map((element) => {
             // const { _id, url, title } = element;
-            const { title, description } = element;
+            const { title, description, url } = element;
             return (
               <Element
                 // _id={_id}
                 title={title}
                 description={description}
-                // url={url}
+                url={url}
                 refreshGallery={getGalleryObject}
                 modalData={modalData}
                 modalVisible={modalVisible}
@@ -75,9 +75,6 @@ const ObjectComp = () => {
     }
   };
   window.onclick = function (event) {
-    console.log(event.target);
-    console.log(modal);
-    console.log(event.target.src);
     if (event.target === modal) {
       setModalVisible(!modalVisible);
     }

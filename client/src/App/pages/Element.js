@@ -40,20 +40,14 @@ const Element = ({
     modalData.children[2].innerHTML = `${description}`;
     console.log(modalData.children[0].src);
   }
-  const urlSplitted = url.split('\\');
+  // const urlSplitted = url.split('\\');
   return (
     <div>
       <div className="elementContainer">
         <button>{title}</button>
 
         <img src={`/images/${url}`} alt="" onClick={handleClick} />
-        <button
-          onClick={() =>
-            deleteElement(_id, url, urlSplitted[10], urlSplitted[11])
-          }
-        >
-          Usuń
-        </button>
+        <button onClick={() => deleteElement(_id, url)}>Usuń</button>
       </div>
     </div>
   );

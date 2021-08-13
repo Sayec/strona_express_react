@@ -12,7 +12,6 @@ import ObjectComp from './ObjectComp';
 
 const Page = () => {
   return (
-    // <BrowserRouter>
     <div className="page-container">
       <Switch>
         <Route exact path="/" component={Home} />
@@ -25,7 +24,6 @@ const Page = () => {
         <Route path="/" component={Default} />
       </Switch>
     </div>
-    // </BrowserRouter>
   );
 };
 

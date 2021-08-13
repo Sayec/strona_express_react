@@ -35,7 +35,28 @@ const galleryRoutes = require('./routes/gallery');
 
 // Serve the static files from the React app
 // app.use(express.static(path.join(__dirname, 'client/build')));
-app.use(express.static(path.join(__dirname, '../client/build')));
+// if (process.env.NODE_ENV === 'production') {
+//   app.get('/', (req, res) => {
+//     // the root
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+//   });
+//   app.use(express.static(path.join(__dirname, '../client/build')));
+//   app.get('/*', (req, res) => {
+//     // all remaining addresses
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+//   });
+// } else {
+//   app.get('/', (req, res) => {
+//     // the root
+//     res.sendFile(path.join(__dirname, './client/public/index.html'));
+//   });
+//   // console.log(__dirname, '../client/public');
+//   app.use(express.static(path.join(__dirname, '../client/public')));
+//   app.get('/*', (req, res) => {
+//     // all remaining addresses
+//     res.sendFile(path.join(__dirname, './client/public/index.html'));
+//   });
+// }
 app.use(
   cookieSession({
     name: 'session',
@@ -70,11 +91,17 @@ handleFormPost(app, path, fs, db);
 //   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
 // );
 if (process.env.NODE_ENV === 'production') {
+  app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, './client/build/index.html'));
+  });
   app.use(express.static('client/build'));
   app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, './client/build/index.html'));
   });
 } else {
+  app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, './client/public/index.html'));
+  });
   app.use(express.static(path.join(__dirname, '/client/public')));
   app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, './client/public/index.html'));
