@@ -36,7 +36,7 @@ function handleFormPost(app, path, fs, db) {
     if (!fs.existsSync(targetDirectory)) {
       fs.mkdirSync(targetDirectory);
     }
-    res.end('saddsa');
+    res.redirect('/gallery/');
   });
   app.post('/addObject', (req, res) => {
     const objectElement = new Objects({
