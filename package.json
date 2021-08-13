@@ -29,5 +29,6 @@
     "file-loader": "^6.2.0",
     "react-router": "^5.2.0",
     "url-loader": "^4.1.1"
-  }
+  },
+  "homepage": "https://myastroapp.herokuapp.com/"
 }
