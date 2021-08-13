@@ -1,12 +1,10 @@
 const cookieSession = require('cookie-session');
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const config = require('./config');
 const path = require('path');
 const fs = require('fs');
 // mongodb+srv://admin:admin@cluster0.xli15.mongodb.net/<dbname>?retryWrites=true&w=majority
-
 const mongoose = require('mongoose');
 const app = express();
 app.use(express.json());
@@ -16,7 +14,7 @@ app.use(
   })
 );
 
-// app.use(body.json());
+// app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect(config.db, {
   useNewUrlParser: true,

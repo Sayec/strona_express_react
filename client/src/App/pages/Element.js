@@ -33,7 +33,7 @@ const Element = ({
     e.preventDefault();
     console.log(e.target);
     setModalVisible(true);
-    const myImgPath = require(`../../../${url}`).default;
+    const myImgPath = `/images/${url}`;
 
     modalData.children[0].src = myImgPath;
     modalData.children[1].innerHTML = `${title}`;
@@ -46,11 +46,7 @@ const Element = ({
       <div className="elementContainer">
         <button>{title}</button>
 
-        <img
-          src={require(`../../../${url}`).default}
-          alt=""
-          onClick={handleClick}
-        />
+        <img src={`/images/${url}`} alt="" onClick={handleClick} />
         <button
           onClick={() =>
             deleteElement(_id, url, urlSplitted[10], urlSplitted[11])

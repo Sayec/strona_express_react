@@ -9,6 +9,7 @@ const photoSchema = new Schema({
   description: String,
   url: String,
   date: { type: Date, default: Date.now },
+  img: { data: Buffer, contentType: String },
 });
 
 module.exports = mongoose.model('Photos', photoSchema);

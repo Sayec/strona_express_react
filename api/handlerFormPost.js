@@ -1,6 +1,6 @@
 // const { default: Category } = require('../client/src/App/pages/Category');
 
-const { find } = require('./models/photo');
+// const { find } = require('./models/photo');
 
 function handleFormPost(app, path, fs, db) {
   const Photos = require('./models/photo');
@@ -8,18 +8,18 @@ function handleFormPost(app, path, fs, db) {
   const Objects = require('./models/object');
   const ObjectId = require('mongodb').ObjectID;
   const multer = require('multer');
+  const util = require('util');
+  const unlinkFile = util.promisify(fs.unlink);
+  const upload = multer({ dest: 'uploads/' });
+  const { uploadFile, getFileStream, deleteFile } = require('./s3');
   const handleError = (err, res) => {
     res
       .status(500)
       .contentType('text/plain')
       .end('Oops! Something went wrong!');
   };
-  const upload = multer({
-    dest: '/path/to/temporary/directory/to/store/uploaded/files',
-    // you might also want to set some limits: https://github.com/expressjs/multer#limits
-  });
   app.post('/addCategory', (req, res) => {
-    console.log('test');
+    console.log(req.body);
     const categoryElement = new Categories({
       name: req.body.categoryname,
       description: 'test',
@@ -36,13 +36,9 @@ function handleFormPost(app, path, fs, db) {
     if (!fs.existsSync(targetDirectory)) {
       fs.mkdirSync(targetDirectory);
     }
-    // if (!fs.existsSync(targetDirectory)) {
-    //   fs.mkdirSync(targetDirectory);
-    // }
     res.end('saddsa');
   });
   app.post('/addObject', (req, res) => {
-    console.log(req.body.object);
     const objectElement = new Objects({
       name: req.body.objectname,
       category: req.body.categoryname,
@@ -51,58 +47,45 @@ function handleFormPost(app, path, fs, db) {
     objectElement.save((err) => {
       console.log('blad' + err);
     });
-    const targetDirectory = path.join(
-      __dirname,
-      `../client/src/uploads/${req.body.categoryname}/${req.body.objectname}`
-    );
-    console.log(targetDirectory);
-    if (!fs.existsSync(targetDirectory)) {
-      fs.mkdirSync(targetDirectory);
-    }
-    res.redirect('/gallery/' + req.body.categoryname);
+    // const targetDirectory = path.join(
+    //   __dirname,
+    //   `../client/src/uploads/${req.body.categoryname}/${req.body.objectname}`
+    // );
+    // console.log(targetDirectory);
+    // if (!fs.existsSync(targetDirectory)) {
+    //   fs.mkdirSync(targetDirectory);
+    // }
+    res.redirect('/gallery/' + req.body.categoryname + '/');
   });
   app.post(
     '/upload',
     upload.single('file' /* name attribute of <file> element in your form */),
-    (req, res) => {
+    async (req, res) => {
+      const file = req.file;
+      console.log(file);
+      const result = await uploadFile(file);
+      await unlinkFile(file.path);
+      console.log(result);
+
       console.log('to robi;');
-      console.log(req.body);
-      const tempPath = req.file.path;
-      const targetPath = path.join(
-        __dirname,
-        `../client/src/uploads/${req.body.category}/${req.body.object}/${req.file.originalname}`
-      );
-      const targetDirectory = path.join(
-        __dirname,
-        `../client/src/uploads/${req.body.category}/${req.body.object}`
-      );
-      console.log(req.file.originalname);
-      console.log(targetPath);
-      if (!fs.existsSync(targetDirectory)) {
-        fs.mkdirSync(targetDirectory);
-      }
       console.log(req.body);
       if (
         path.extname(req.file.originalname).toLowerCase() === '.png' ||
         path.extname(req.file.originalname).toLowerCase() === '.jpg'
       ) {
-        fs.rename(tempPath, targetPath, (err) => {
-          if (err) return handleError(err, res);
-          const photoElement = new Photos({
-            title: req.body.fname,
-            category: req.body.category,
-            object: req.body.object,
-            description: req.body.lname,
-            url: `src/uploads/${req.body.category}/${req.body.object}/${req.file.originalname}`,
-          });
-          photoElement.save((err) => {
-            console.log(err);
-          });
-          // res.status(200).contentType('text/plain').end('File uploaded!');
-          // res.status(200).end();
-          let categoryObject = `${req.body.category}/${req.body.object}`;
-          res.redirect('/gallery/' + categoryObject);
+        const photoElement = new Photos({
+          title: req.body.fname,
+          category: req.body.category,
+          object: req.body.object,
+          description: req.body.lname,
+          url: result.Key,
         });
+        console.log('tu jestem git');
+        photoElement.save((err) => {
+          console.log(err);
+        });
+        let categoryObject = `${req.body.category}/${req.body.object}`;
+        res.redirect('/gallery/' + categoryObject);
       } else {
         fs.unlink(tempPath, (err) => {
           if (err) return handleError(err, res);
@@ -114,15 +97,22 @@ function handleFormPost(app, path, fs, db) {
       }
     }
   );
+
+  app.get('/images/:key', (req, res) => {
+    const key = req.params.key;
+    const readStream = getFileStream(key);
+    readStream.pipe(res);
+  });
   app.post('/deleteElement', (req, res) => {
     console.log(req.body.url);
     db.collection('photos').deleteOne({ _id: ObjectId(req.body.id) });
     // let categoryObject = `${req.body.category}/${req.body.object}`;
     // res.redirect('/gallery/' + categoryObject);
-    fs.unlink(req.body.url, function (err) {
-      if (err) return console.log(err);
-      console.log('usunieto element');
-    });
+    deleteFile(req.body.url);
+    // fs.unlink(req.body.url, function (err) {
+    //   if (err) return console.log(err);
+    //   console.log('usunieto element');
+    // });
   });
   app.post('/deleteObjectInCategory', (req, res) => {
     const { category, name } = req.body;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import video from '../../uploads/siostry_botEZ_o_Bartoshu.mp4';
+// import video from '../../uploads/siostry_botEZ_o_Bartoshu.mp4';
 
 const Gallery = () => {
   const [isTimeCounting, setIsTimeCounting] = useState(true);
@@ -20,17 +20,18 @@ const Gallery = () => {
     // console.log(!isTimeCounting);
 
     // videoRef.current.addEventListener('loadedmetadata', () => {
-    if (!isTimeCounting) {
-      console.log('halo');
-      sendTime();
-    }
-    getTime();
+    // if (!isTimeCounting) {
+    //   console.log('halo');
+    //   sendTime();
+    // }
+    // getTime();
     // });
 
     setIsGalleryHidden(false);
     // videoRef.current.currentTime = videoTime;
     // videoRef.current.play();
-  }, [videoTime, videoRef.current, isTimeCounting]);
+    // }, [videoTime, videoRef.current, isTimeCounting]);
+  }, []);
   const getGallery = () => {
     fetch('/api/getGallery')
       .then((res) => {
@@ -40,31 +41,31 @@ const Gallery = () => {
         setGallery([...gallery]);
       });
   };
-  const getTime = () => {
-    fetch('/api/getTime')
-      .then((res) => {
-        return res.json();
-      })
-      .then((timeData) => {
-        setVideoTime(timeData);
-      });
-  };
+  // const getTime = () => {
+  //   fetch('/api/getTime')
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((timeData) => {
+  //       setVideoTime(timeData);
+  //     });
+  // };
 
-  const sendTime = () => {
-    fetch('/api/sendTime', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      // Accept: 'application/json',
-      // responseType: 'json',
-      // body: JSON.stringify({ durationTime: `${videoRef.current.duration}` }),
-    })
-      .then((result) => {
-        return result;
-      })
-      .then((info) => {});
-  };
+  // const sendTime = () => {
+  //   fetch('/api/sendTime', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //     // Accept: 'application/json',
+  //     // responseType: 'json',
+  //     // body: JSON.stringify({ durationTime: `${videoRef.current.duration}` }),
+  //   })
+  //     .then((result) => {
+  //       return result;
+  //     })
+  //     .then((info) => {});
+  // };
   const getCount = () => {
     fetch('/api/getCount')
       .then((res) => {

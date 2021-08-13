@@ -60,11 +60,9 @@ const Category = () => {
   };
 
   const urlSplitted = window.location.pathname.split('/');
-  console.log(urlSplitted[urlSplitted.length - 1]);
   const allCategoryElements = categoryElements.map((element) => {
     const url = element.url;
     const urlSplitted = url.split('\\');
-    console.log(urlSplitted);
     return (
       <div key={element._id}>
         {element.title} {element.url}
@@ -104,7 +102,7 @@ const Category = () => {
           <input
             type="hidden"
             name="categoryname"
-            value={urlSplitted[urlSplitted.length - 1]}
+            value={urlSplitted[urlSplitted.length - 2]}
           />
           <label for="objectname">Object Name:</label> <br />
           <input
@@ -113,8 +111,8 @@ const Category = () => {
             onChange={handleObjectNameChange}
           />
           <br />
-          <button class="form-field" type="submit" onClick={getObjects}>
-            Dodaj kategorie
+          <button class="form-field" type="submit">
+            Dodaj obiekt
           </button>
         </form>
         <Link to={'../'}>
