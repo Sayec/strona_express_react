@@ -44,14 +44,16 @@ app.use(
 //   next();
 // });
 if (process.env.NODE_ENV === 'production') {
+  console.log('tutaj');
   app.use(express.static('client/build'));
   app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, './client/build/index.html'));
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
   });
 } else {
+  console.log(path.join(__dirname, 'client/public/index.html'));
   app.use(express.static(path.join(__dirname, '/client/public')));
   app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, './client/public/index.html'));
+    res.sendFile(path.join(__dirname, '../client/public/index.html'));
   });
 }
 
