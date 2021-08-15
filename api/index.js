@@ -32,31 +32,6 @@ const handleFormPost = require('./handlerFormPost');
 const homeRoutes = require('./routes/home');
 const listRoutes = require('./routes/list');
 const galleryRoutes = require('./routes/gallery');
-
-// Serve the static files from the React app
-// app.use(express.static(path.join(__dirname, 'client/build')));
-// if (process.env.NODE_ENV === 'production') {
-//   app.get('/', (req, res) => {
-//     // the root
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-//   });
-//   app.use(express.static(path.join(__dirname, '../client/build')));
-//   app.get('/*', (req, res) => {
-//     // all remaining addresses
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-//   });
-// } else {
-//   app.get('/', (req, res) => {
-//     // the root
-//     res.sendFile(path.join(__dirname, './client/public/index.html'));
-//   });
-//   // console.log(__dirname, '../client/public');
-//   app.use(express.static(path.join(__dirname, '../client/public')));
-//   app.get('/*', (req, res) => {
-//     // all remaining addresses
-//     res.sendFile(path.join(__dirname, './client/public/index.html'));
-//   });
-// }
 app.use(
   cookieSession({
     name: 'session',
@@ -68,6 +43,17 @@ app.use(
 //   res.setHeader('Content-Type', 'application/json');
 //   next();
 // });
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+  });
+} else {
+  // app.use(express.static(path.join(__dirname, '/client/public')));
+  // app.get('/*', function (req, res) {
+  //   res.sendFile(path.join(__dirname, './client/public/index.html'));
+  // });
+}
 
 listRoutes(app);
 galleryRoutes(app, path, db);
@@ -90,17 +76,7 @@ handleFormPost(app, path, fs, db);
 // app.get('*', (req, res) =>
 //   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
 // );
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-  app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, './client/build/index.html'));
-  });
-} else {
-  app.use(express.static(path.join(__dirname, '/client/public')));
-  app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, './client/public/index.html'));
-  });
-}
+
 const port = process.env.PORT || 5000;
 app.listen(port);
 
