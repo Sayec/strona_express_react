@@ -13,7 +13,20 @@ const ObjectComp = () => {
   const [objectElements, setObjectElements] = useState([]);
   const [isAddActive, setIsAddActive] = useState(false);
   let { category, object } = useParams();
-  useEffect(() => getGalleryObject(), []);
+  const [admin, setAdmin] = useState(false);
+  useEffect(() => {
+    getGalleryObject();
+    getCookies();
+  }, []);
+  const getCookies = () => {
+    fetch('/getcookie')
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setAdmin(data.admin);
+      });
+  };
   const getGalleryObject = () => {
     fetch(
       '/api/getGalleryObject?' +
@@ -26,7 +39,6 @@ const ObjectComp = () => {
         return res.json();
       })
       .then((objectElements) => {
-        console.log('HEJ' + objectElements);
         setObjectElements([...objectElements]);
       });
   };
@@ -39,6 +51,7 @@ const ObjectComp = () => {
           const { _id, url, title, description } = element;
           return (
             <Element
+              admin={admin}
               _id={_id}
               title={title}
               description={description}
@@ -62,6 +75,7 @@ const ObjectComp = () => {
             return (
               <Element
                 // _id={_id}
+                admin={admin}
                 title={title}
                 description={description}
                 url={url}
@@ -122,9 +136,7 @@ const ObjectComp = () => {
 
       <div className="elements-container">
         {elementList()}
-        {elementList()}
-        {elementList()}
-        {elementList()}
+
         <div className="break-line"></div>
         <div className="break-line"></div>
       </div>
@@ -142,7 +154,7 @@ const ObjectComp = () => {
       <Link to={'.'}>
         <button variant="raised">Home</button>
       </Link>
-      <button onClick={addButtonOnClick}>Dodaj zdjęcie</button>
+      {admin ? <button onClick={addButtonOnClick}>Dodaj zdjęcie</button> : null}
       {isAddActive ? (
         <form method="post" enctype="multipart/form-data" action="/upload">
           {' '}

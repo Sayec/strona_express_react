@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 const Element = ({
+  admin,
   _id,
   title,
   description,
@@ -28,7 +29,7 @@ const Element = ({
       .then((info) => {});
     refreshGallery();
   };
-
+  console.log(admin);
   function handleClick(e) {
     e.preventDefault();
     console.log(e.target);
@@ -47,7 +48,10 @@ const Element = ({
         <button>{title}</button>
 
         <img src={`/images/${url}`} alt="" onClick={handleClick} />
-        <button onClick={() => deleteElement(_id, url)}>Usuń</button>
+
+        {admin ? (
+          <button onClick={() => deleteElement(_id, url)}>Usuń</button>
+        ) : null}
       </div>
     </div>
   );

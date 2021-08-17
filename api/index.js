@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const config = require('./config');
 const path = require('path');
 const fs = require('fs');
+const cookieParser = require('cookie-parser');
 // mongodb+srv://admin:admin@cluster0.xli15.mongodb.net/<dbname>?retryWrites=true&w=majority
 const mongoose = require('mongoose');
 const app = express();
@@ -13,7 +14,7 @@ app.use(
     extended: true,
   })
 );
-
+app.use(cookieParser());
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect(config.db, {
@@ -32,19 +33,20 @@ const handleFormPost = require('./handlerFormPost');
 const homeRoutes = require('./routes/home');
 const listRoutes = require('./routes/list');
 const galleryRoutes = require('./routes/gallery');
-app.use(
-  cookieSession({
-    name: 'session',
-    keys: config.keySession,
-    maxAge: config.maxAgeSession, // 24 hours
-  })
-);
+// app.use(
+//   cookieSession({
+//     name: 'session',
+//     keys: config.keySession,
+//     maxAge: config.maxAgeSession, // 24 hours
+//     secure: config.secure,
+//     httpOnly: config.httpOnly,
+//   })
+// );
 
 listRoutes(app);
 galleryRoutes(app, path, db);
 homeRoutes(app, path);
 handleFormPost(app, path, fs, db);
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   app.get('/*', function (req, res) {

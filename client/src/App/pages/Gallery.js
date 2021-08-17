@@ -12,11 +12,12 @@ const Gallery = () => {
   const [videoTime, setVideoTime] = useState(0);
   const [isGalleryHidden, setIsGalleryHidden] = useState(true);
   const videoRef = useRef();
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [admin, setAdmin] = useState(false);
   useEffect(() => {
     getCount();
     // console.log(isTimeCounting);
     getGallery();
+    getCookies();
     // console.log(!isTimeCounting);
 
     // videoRef.current.addEventListener('loadedmetadata', () => {
@@ -32,6 +33,15 @@ const Gallery = () => {
     // videoRef.current.play();
     // }, [videoTime, videoRef.current, isTimeCounting]);
   }, []);
+  const getCookies = () => {
+    fetch('/getcookie')
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setAdmin(data.admin);
+      });
+  };
   const getGallery = () => {
     fetch('/api/getGallery')
       .then((res) => {
@@ -104,18 +114,20 @@ const Gallery = () => {
           : null}
       </div>
       <div>
-        <form method="post" action="/addCategory">
-          <label for="categoryname">Category Name:</label> <br />
-          <input
-            type="text"
-            name="categoryname"
-            onChange={handleCategoryNameChange}
-          />
-          <br />
-          <button class="form-field" type="submit">
-            Register
-          </button>
-        </form>
+        {admin ? (
+          <form method="post" action="/addCategory">
+            <label for="categoryname">Category Name:</label> <br />
+            <input
+              type="text"
+              name="categoryname"
+              onChange={handleCategoryNameChange}
+            />
+            <br />
+            <button class="form-field" type="submit">
+              Register
+            </button>
+          </form>
+        ) : null}
         <Link to={'../'}>
           <button variant="raised">Home</button>
         </Link>

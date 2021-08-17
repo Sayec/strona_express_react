@@ -65,10 +65,6 @@ function handleFormPost(app, path, fs, db) {
       console.log(file);
       const result = await uploadFile(file);
       await unlinkFile(file.path);
-      console.log(result);
-
-      console.log('to robi;');
-      console.log(req.body);
       if (
         path.extname(req.file.originalname).toLowerCase() === '.png' ||
         path.extname(req.file.originalname).toLowerCase() === '.jpg'

@@ -3,29 +3,17 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const Category = () => {
+  const [admin, setAdmin] = useState(false);
   const [categoryElements, setCategoryElements] = useState([]);
   const [values, setValues] = useState({
     objectName: '',
   });
   const [objects, setObjects] = useState([]);
   let { category } = useParams();
-  useEffect(() => getObjects(), []);
-  // const getObjects = () => {
-  //   fetch(
-  //     '/api/getObjects?' +
-  //       new URLSearchParams({
-  //         category,
-  //       })
-  //   )
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((objects) => {
-  //       console.log(objects);
-  //       setObjects([...objects]);
-  //     });
-  // };
-
+  useEffect(() => {
+    getObjects();
+    getCookies();
+  }, []);
   const getObjects = () => {
     axios
       .get('/api/getObjects?' + new URLSearchParams({ category }))
@@ -35,7 +23,15 @@ const Category = () => {
         // return res.json();
       });
   };
-
+  const getCookies = () => {
+    fetch('/getcookie')
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setAdmin(data.admin);
+      });
+  };
   const handleObjectNameChange = (e) => {
     e.persist();
     setValues((values) => ({
@@ -60,61 +56,54 @@ const Category = () => {
   };
 
   const urlSplitted = window.location.pathname.split('/');
-  const allCategoryElements = categoryElements.map((element) => {
-    const url = element.url;
-    const urlSplitted = url.split('\\');
-    return (
-      <div key={element._id}>
-        {element.title} {element.url}
-        <img
-          src={
-            require(`../../${urlSplitted[9]}/${urlSplitted[10]}/${urlSplitted[11]}`)
-              .default
+  const allCategoryElements = objects.map((object) => (
+    <div className="categoryElement">
+      <Link to={`${window.location.pathname}` + `${object.name}`}>
+        <div className="insideCategory">
+          <div className="blockDiv"></div>
+          <span>{object.name}</span>
+        </div>
+      </Link>
+      {admin ? (
+        <button
+          onClick={() =>
+            deleteObjectInCategory(
+              window.location.pathname.split('/')[2],
+              object.name
+            )
           }
-          alt=""
-        />
-      </div>
-    );
-  });
+        >
+          Usuń
+        </button>
+      ) : null}
+    </div>
+  ));
+
   return (
     <div>
-      {objects.length > 0
-        ? objects.map((object) => (
-            <div>
-              <Link to={`${window.location.pathname}` + `${object.name}`}>
-                {object.name}
-              </Link>
-              <button
-                onClick={() =>
-                  deleteObjectInCategory(
-                    window.location.pathname.split('/')[2],
-                    object.name
-                  )
-                }
-              >
-                Usuń
-              </button>
-            </div>
-          ))
-        : null}
+      <div className="categoryStyles">
+        {objects.length > 0 ? allCategoryElements : null}
+      </div>
       <div>
-        <form method="post" action="/addObject">
-          <input
-            type="hidden"
-            name="categoryname"
-            value={urlSplitted[urlSplitted.length - 2]}
-          />
-          <label for="objectname">Object Name:</label> <br />
-          <input
-            type="text"
-            name="objectname"
-            onChange={handleObjectNameChange}
-          />
-          <br />
-          <button class="form-field" type="submit">
-            Dodaj obiekt
-          </button>
-        </form>
+        {admin ? (
+          <form method="post" action="/addObject">
+            <input
+              type="hidden"
+              name="categoryname"
+              value={urlSplitted[urlSplitted.length - 2]}
+            />
+            <label for="objectname">Object Name:</label> <br />
+            <input
+              type="text"
+              name="objectname"
+              onChange={handleObjectNameChange}
+            />
+            <br />
+            <button class="form-field" type="submit">
+              Dodaj obiekt
+            </button>
+          </form>
+        ) : null}
         <Link to={'../'}>
           <button variant="raised">Home</button>
         </Link>

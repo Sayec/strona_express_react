@@ -1,16 +1,20 @@
-.galleryStyles {
-  opacity: 1;
-  transition: 1s ease-in;
+div.categoryStyles {
   display: flex;
   flex-wrap: wrap;
   a {
     text-decoration: none;
-    margin: 20px;
-    div.insideGall {
+  }
+  div.categoryElement {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+    button {
+      width: 200px;
+    }
+    div.insideCategory {
       width: 200px;
       height: 200px;
       display: flex;
-
       flex-direction: column;
       background-color: #333;
 
@@ -28,7 +32,4 @@
       }
     }
   }
-}
-.galleryStyles.hidden {
-  opacity: 0;
 }
