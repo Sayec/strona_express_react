@@ -11,6 +11,7 @@
 
 
 ## General Information
+This project was created to practice my skills in React and NodeJS. It can be used to store photos.
 
 ## Technologies Used
 - NodeJS 14.15.0
@@ -24,9 +25,10 @@ List the ready features here:
 - Photos are storeged on Cloud Service
 
 ## Screenshots
-![Gallery object](./img-readme/1.png)
-![One object modal](./img-readme/2.png)
-![Admin panel for adding photo](./img-readme/3.png)
+
+![Gallery object](./img-readme/1.PNG)
+![One object modal](./img-readme/2.PNG)
+![Admin panel for adding photo](./img-readme/3.PNG)
 
 ## Setup
 To run this project, install it locally using npm:
