@@ -1,15 +1,39 @@
-# strona_express_react
+# MyAstroApp
 
-This site is my private project to upload my astronomy photos. project using mongodb to store data, node.js to run server and React on frontend. 
+> This site is my private project to upload my astronomy photos. This project was created to learn how to conect React with Nodejs 
+> Live demo [_here_](https://myastroapp.herokuapp.com/)
+## Table of Contents
+* [General Info](#general-information)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [Screenshots](#screenshots)
+* [Setup](#setup)
 
-To run project type 
-### npm install 
-on root directory and then type 
-### npm start 
-to run server. Next step is go to client directory 
-### cd client
-type 
-### npm install 
-and 
-### npm start 
-to run react app.
+
+## General Information
+
+## Technologies Used
+- NodeJS 14.15.0
+- ReactJS
+- MongoDB
+- Amazon Simple Storage Service (AWS S3)
+
+## Features
+List the ready features here:
+- Adding and removing categories, objects or photos
+- Photos are storeged on Cloud Service
+
+## Screenshots
+![Gallery object](./img-readme/1.png)
+![One object modal](./img-readme/2.png)
+![Admin panel for adding photo](./img-readme/3.png)
+
+## Setup
+To run this project, install it locally using npm:
+```
+$ npm install 
+$ npm start 
+$ cd client
+$ npm install 
+$ npm start 
+```
