@@ -73,3 +73,12 @@ div.modal-container.modal-visible {
     height: 80%;
   }
 }
+
+@media (max-width: 500px) {
+  div.elements-container {
+    flex-direction: column;
+    div {
+      height: auto;
+    }
+  }
+}

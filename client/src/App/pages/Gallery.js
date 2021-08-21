@@ -69,7 +69,7 @@ const Gallery = () => {
   //     },
   //     // Accept: 'application/json',
   //     // responseType: 'json',
-  //     // body: JSON.stringify({ durationTime: `${videoRef.current.duration}` }),
+  // body: JSON.stringify({ durationTime: `${videoRef.current.duration}` }),
   //   })
   //     .then((result) => {
   //       return result;

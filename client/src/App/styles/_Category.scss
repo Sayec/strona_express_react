@@ -33,3 +33,9 @@ div.categoryStyles {
     }
   }
 }
+@media (max-width: 700px) {
+  div.categoryStyles {
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,15 +1,22 @@
 function homeRoutes(app, path) {
   // Handles any requests that don't match the ones above
-  app.get('/admin', (req, res) => {
-    const list = ['item1', 'item2', 'item3', 'item32321321'];
-    console.log('halo');
+  app.post('/loginValidate', (req, res) => {
+    console.log('test');
+
+    const { username, password } = req.body;
+    console.log(username, password);
     // res.json(list);
-    res.cookie(`admin`, `true`);
-    res.send('Cookie have been saved successfully');
+    if (
+      username === process.env.username_admin &&
+      password === process.env.password_admin
+    ) {
+      res.cookie(`admin`, `true`);
+    }
+    res.redirect('/login');
   });
   app.get('/getcookie', (req, res) => {
     //show the saved cookies
-    console.log(req.cookies);
+    // console.log(req.cookies);
     res.send(req.cookies);
   });
 }

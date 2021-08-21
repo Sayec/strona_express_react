@@ -9,7 +9,7 @@
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
-    left: -25%;
+    left: 50%;
     transition: 1s ease-in;
     width: 50vw;
     display: flex;
@@ -39,6 +39,27 @@
 
   .nav.hidden {
     opacity: 1;
-    left: 50%;
+    left: -25%;
+  }
+}
+@media (max-width: 900px) {
+  .nav-container {
+    .nav {
+      width: 70%;
+      a {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .nav-container {
+    .nav {
+      width: 80%;
+      a {
+        font-size: 18px;
+      }
+    }
   }
 }
