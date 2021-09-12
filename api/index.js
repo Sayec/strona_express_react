@@ -29,7 +29,6 @@ db.once('open', function () {
 });
 
 const handleFormPost = require('./handlerFormPost');
-
 const homeRoutes = require('./routes/home');
 const listRoutes = require('./routes/list');
 const galleryRoutes = require('./routes/gallery');

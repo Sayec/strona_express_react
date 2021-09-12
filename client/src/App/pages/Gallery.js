@@ -129,19 +129,8 @@ const Gallery = () => {
           </form>
         ) : null}
         <Link to={'../'}>
-          <button variant="raised">Home</button>
+          <button variant="raised">Wróć</button>
         </Link>
-        {/* <video
-          src={video}
-          width="320"
-          height="240"
-          controls={isAdmin}
-          autoPlay
-          muted
-          ref={videoRef}
-          loop
-          preload="metadata"
-        ></video> */}
       </div>
     </div>
   );

@@ -32,10 +32,10 @@ function handleFormPost(app, path, fs, db) {
       __dirname,
       `../client/src/uploads/${req.body.categoryname}`
     );
-    console.log(targetDirectory);
-    if (!fs.existsSync(targetDirectory)) {
-      fs.mkdirSync(targetDirectory);
-    }
+    // console.log(targetDirectory);
+    // if (!fs.existsSync(targetDirectory)) {
+    //   fs.mkdirSync(targetDirectory);
+    // }
     res.redirect('/gallery/');
   });
   app.post('/addObject', (req, res) => {

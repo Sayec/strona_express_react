@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const Id = () => {
   const [values, setValues] = useState({
@@ -33,13 +33,13 @@ const Id = () => {
     }));
     console.log(values.url);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(values.fName);
-    console.log(values.sName);
-    console.log(values.url);
-    setSubmitted(true);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(values.fName);
+  //   console.log(values.sName);
+  //   console.log(values.url);
+  //   setSubmitted(true);
+  // };
   let { category, object } = useParams();
   console.log(object);
   return (

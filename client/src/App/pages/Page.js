@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import Home from './Home';
 import Default from './Default';
@@ -38,7 +38,7 @@ const Page = () => {
           render={(props) => <Gallery {...props} admin={admin} />}
         /> */}
         <Route path="/eq" component={Eq} />
-        <Route path="/upload/:category/:object" component={Id} />
+        {/* <Route path="/upload/:category/:object" component={Id} /> */}
         <Route path="/gallery/:category/:object" component={ObjectComp} />
         {/* <Route
           path="/gallery/:category/:object"

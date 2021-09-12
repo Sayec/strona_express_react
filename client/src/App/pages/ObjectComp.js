@@ -66,7 +66,7 @@ const ObjectComp = () => {
       default:
         return objectElements
           .filter((element) => {
-            const { _id, url, title } = element;
+            const { title } = element;
             return title.toLowerCase().includes(searchName.toLowerCase());
           })
           .map((element) => {
@@ -152,7 +152,7 @@ const ObjectComp = () => {
         </div>
       </div>
       <Link to={'.'}>
-        <button variant="raised">Home</button>
+        <button variant="raised">Wróć</button>
       </Link>
       {admin ? <button onClick={addButtonOnClick}>Dodaj zdjęcie</button> : null}
       {isAddActive ? (

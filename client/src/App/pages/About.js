@@ -6,7 +6,7 @@ const About = () => {
     <div>
       O mnie coś
       <Link to={'./'}>
-        <button variant="raised">Home</button>
+        <button variant="raised">Wróć</button>
       </Link>
     </div>
   );

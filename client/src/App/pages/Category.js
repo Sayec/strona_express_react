@@ -105,7 +105,7 @@ const Category = () => {
           </form>
         ) : null}
         <Link to={'../'}>
-          <button variant="raised">Home</button>
+          <button variant="raised">Wróć</button>
         </Link>
       </div>
     </div>

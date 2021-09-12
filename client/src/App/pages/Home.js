@@ -64,7 +64,7 @@ const Home = () => {
     <div className="App">
       <h1>Project Home</h1>
       {/* Link to List.js */}
-      <nav>
+      {/* <nav>
         <Link to={'./list'}>My List</Link>
         <Link to={'./eq'}>E Q</Link>
         <Link to={'./gallery'}>Galeria</Link>
@@ -72,7 +72,7 @@ const Home = () => {
         <Link to={'./admin'}>Logowanie</Link>
         <Link to={'./gallery/5'}>5</Link>
         <Link className="test">Test</Link>
-      </nav>
+      </nav> */}
       {/* <video width="400" controls>
   <source src="mov_bbb.mp4" type="video/mp4">
   <source src="mov_bbb.ogg" type="video/ogg">

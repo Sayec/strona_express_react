@@ -1,9 +1,14 @@
+$primary-color: rgb(122, 168, 255);
+$secondary-color: #343c43;
+
 .nav-container {
-  background-color: #333;
+  background-color: $primary-color;
   overflow: hidden;
   position: relative;
-  height: 10vh;
-  margin-bottom: 20px;
+  height: 6vh;
+  margin: 2vh auto;
+  width: 50%;
+  border-radius: 25px;
   .nav {
     opacity: 1;
     transform: translate(-50%, -50%);
@@ -20,7 +25,7 @@
       padding: 10px;
       font-size: 22px;
       &:hover {
-        color: rgb(122, 168, 255);
+        color: $secondary-color;
       }
     }
   }
@@ -55,6 +60,8 @@
 
 @media (max-width: 500px) {
   .nav-container {
+    width: 100%;
+    border-radius: 0px;
     .nav {
       width: 80%;
       a {

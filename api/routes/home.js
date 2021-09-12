@@ -10,7 +10,10 @@ function homeRoutes(app, path) {
       username === process.env.username_admin &&
       password === process.env.password_admin
     ) {
-      res.cookie(`admin`, `true`);
+      res.cookie(`admin`, `true`, {
+        expires: new Date(Date.now() + 10 * 60 * 1000), //minutes*seconds*ms
+        httpOnly: true,
+      });
     }
     res.redirect('/login');
   });

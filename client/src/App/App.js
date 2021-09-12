@@ -6,8 +6,8 @@ import Nav from './pages/Nav';
 const App = () => {
   return (
     <div>
-      <nav>{<Nav />}</nav>
-      <div>{<Page />}</div>
+      {<Nav />}
+      {<Page />}
     </div>
   );
 };

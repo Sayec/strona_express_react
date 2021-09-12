@@ -3,6 +3,7 @@
   transition: 1s ease-in;
   display: flex;
   flex-wrap: wrap;
+
   a {
     text-decoration: none;
     margin: 20px;
@@ -31,4 +32,11 @@
 }
 .galleryStyles.hidden {
   opacity: 0;
+}
+
+@media (max-width: 700px) {
+  div.galleryStyles {
+    align-items: center;
+    justify-content: center;
+  }
 }
