@@ -30,7 +30,7 @@ div.modal-container {
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.5);
   transform: scale(0);
-
+  transition: 1s;
   div.modal-content {
     transform: scale(0);
     width: 0%;
@@ -79,6 +79,32 @@ div.modal-container.modal-visible {
     flex-direction: column;
     div {
       height: auto;
+    }
+  }
+}
+@media (max-width: 700px) {
+  div.modal-container.modal-visible {
+    div.modal-content {
+      width: 70%;
+      height: 80%;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  div.modal-container.modal-visible {
+    div.modal-content {
+      width: 100%;
+      height: 250px;
+      img {
+        height: auto;
+      }
+      h3 {
+        top: 4%;
+      }
+      p {
+        bottom: -2%;
+      }
     }
   }
 }

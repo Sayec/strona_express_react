@@ -48,6 +48,7 @@ const ObjectComp = () => {
     switch (searchName) {
       case '':
         return objectElements.map((element) => {
+          console.log('tutak' + element.title);
           const { _id, url, title, description } = element;
           return (
             <Element

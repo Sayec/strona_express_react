@@ -18,7 +18,7 @@ const Category = () => {
     axios
       .get('/api/getObjects?' + new URLSearchParams({ category }))
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setObjects([...res.data]);
         // return res.json();
       });
@@ -54,7 +54,7 @@ const Category = () => {
       .then((info) => {});
     getObjects();
   };
-
+  const [searchName, setSearchName] = useState('');
   const urlSplitted = window.location.pathname.split('/');
   const allCategoryElements = objects.map((object) => (
     <div className="categoryElement">
@@ -78,11 +78,83 @@ const Category = () => {
       ) : null}
     </div>
   ));
-
+  const handleSearch = (e) => {
+    e.persist();
+    setSearchName(e.target.value);
+  };
+  let elementList = () => {
+    switch (searchName) {
+      case '':
+        return objects.map((element) => {
+          return (
+            <div className="categoryElement">
+              <Link to={`${window.location.pathname}` + `${element.name}`}>
+                <div className="insideCategory">
+                  <div className="blockDiv"></div>
+                  <span>{element.name}</span>
+                </div>
+              </Link>
+              {admin ? (
+                <button
+                  onClick={() =>
+                    deleteObjectInCategory(
+                      window.location.pathname.split('/')[2],
+                      element.name
+                    )
+                  }
+                >
+                  Usuń
+                </button>
+              ) : null}
+            </div>
+          );
+        });
+      default:
+        return objects
+          .filter((element) => {
+            const { name } = element;
+            return name.toLowerCase().includes(searchName.toLowerCase());
+          })
+          .map((element) => {
+            // const { _id, url, title } = element;
+            return (
+              <div className="categoryElement">
+                <Link to={`${window.location.pathname}` + `${element.name}`}>
+                  <div className="insideCategory">
+                    <div className="blockDiv"></div>
+                    <span>{element.name}</span>
+                  </div>
+                </Link>
+                {admin ? (
+                  <button
+                    onClick={() =>
+                      deleteObjectInCategory(
+                        window.location.pathname.split('/')[2],
+                        element.name
+                      )
+                    }
+                  >
+                    Usuń
+                  </button>
+                ) : null}
+              </div>
+            );
+          });
+    }
+  };
   return (
     <div>
+      <div className="searchForm">
+        <input
+          type="text"
+          placeholder="Wyszukaj..."
+          value={searchName}
+          onChange={handleSearch}
+        />
+      </div>
       <div className="categoryStyles">
-        {objects.length > 0 ? allCategoryElements : null}
+        {/* {objects.length > 0 ? allCategoryElements : null} */}
+        {elementList()}
       </div>
       <div>
         {admin ? (

@@ -2,30 +2,25 @@ $primary-color: rgb(122, 168, 255);
 $secondary-color: #343c43;
 
 .nav-container {
-  background-color: $primary-color;
+  background-color: black;
   overflow: hidden;
-  position: relative;
-  height: 6vh;
-  margin: 2vh auto;
-  width: 50%;
-  border-radius: 25px;
+  height: 60px;
+  width: 100%;
   .nav {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    height: 100%;
     transition: 1s ease-in;
-    width: 50vw;
+    width: 35vw;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     a {
       color: white;
       text-decoration: none;
       padding: 10px;
-      font-size: 22px;
+      transition: 1s;
+      font-size: 20px;
       &:hover {
-        color: $secondary-color;
+        color: rgb(180, 180, 180);
       }
     }
   }
