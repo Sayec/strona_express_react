@@ -99,7 +99,7 @@ function handleFormPost(app, path, fs, db) {
     const readStream = getFileStream(key);
     readStream.pipe(res);
   });
-  app.post('/deleteElement', (req, res) => {
+  app.delete('/deleteElement', (req, res) => {
     console.log(req.body.url);
     db.collection('photos').deleteOne({ _id: ObjectId(req.body.id) });
     // let categoryObject = `${req.body.category}/${req.body.object}`;
@@ -110,7 +110,7 @@ function handleFormPost(app, path, fs, db) {
     //   console.log('usunieto element');
     // });
   });
-  app.post('/deleteObjectInCategory', (req, res) => {
+  app.delete('/deleteObjectInCategory', (req, res) => {
     const { category, name } = req.body;
     let i;
     console.log(req.body);

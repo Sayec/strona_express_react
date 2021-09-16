@@ -15,7 +15,7 @@ const Element = ({
   const deleteElement = (id, url, category, object) => {
     console.log(id);
     fetch('/deleteElement', {
-      method: 'POST',
+      method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
       },
@@ -29,19 +29,14 @@ const Element = ({
       .then((info) => {});
     refreshGallery();
   };
-  console.log(admin);
   function handleClick(e) {
     e.preventDefault();
-    console.log(e.target);
     setModalVisible(true);
     const myImgPath = `/images/${url}`;
-
     modalData.children[0].src = myImgPath;
     modalData.children[1].innerHTML = `${title}`;
     modalData.children[2].innerHTML = `${description}`;
-    console.log(modalData.children[0].src);
   }
-  // const urlSplitted = url.split('\\');
   return (
     <div>
       <div className="elementContainer">

@@ -42,7 +42,7 @@ const ObjectComp = () => {
         setObjectElements([...objectElements]);
       });
   };
-  let modal = document.getElementsByClassName('modal-container')[0];
+  let modal = document.querySelector('.modal-container');
   let modalData = document.getElementsByClassName('modal-content')[0];
   let elementList = () => {
     switch (searchName) {
@@ -90,13 +90,17 @@ const ObjectComp = () => {
     }
   };
   window.onclick = function (event) {
+    console.log(event.target);
     if (event.target === modal) {
-      setModalVisible(!modalVisible);
+      console.log(event.target);
+      console.log('dziala');
+      console.log(modalVisible);
+      setModalVisible((modalVisible) => !modalVisible);
+      console.log(modalVisible);
     }
   };
 
   const addButtonOnClick = () => {
-    console.log('zmiana');
     setIsAddActive(!isAddActive);
   };
   const handleFNameChange = (e) => {

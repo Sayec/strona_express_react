@@ -42,7 +42,7 @@ const Category = () => {
 
   const deleteObjectInCategory = (category, name) => {
     fetch('/deleteObjectInCategory', {
-      method: 'POST',
+      method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
       },
