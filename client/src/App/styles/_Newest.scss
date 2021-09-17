@@ -1,0 +1,34 @@
+.newest {
+  // height: 200px;
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  border-top: 2px solid black;
+  h2 {
+    text-align: center;
+  }
+  .newest-photo-container {
+    display: flex;
+    height: 100%;
+    height: 200px;
+    .newest-element {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      background-color: white;
+      margin: 0 20px;
+      overflow: hidden;
+      a {
+        height: 100%;
+        img {
+          height: 100%;
+          &:hover {
+            transform: scale(1.5);
+          }
+        }
+      }
+    }
+  }
+}

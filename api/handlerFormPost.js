@@ -19,7 +19,6 @@ function handleFormPost(app, path, fs, db) {
       .end('Oops! Something went wrong!');
   };
   app.post('/addCategory', (req, res) => {
-    console.log(req.body);
     const categoryElement = new Categories({
       name: req.body.categoryname,
       description: 'test',
@@ -27,7 +26,6 @@ function handleFormPost(app, path, fs, db) {
     categoryElement.save((err) => {
       console.log('blad' + err);
     });
-    console.log(req.body);
     const targetDirectory = path.join(
       __dirname,
       `../client/src/uploads/${req.body.categoryname}`
@@ -76,7 +74,6 @@ function handleFormPost(app, path, fs, db) {
           description: req.body.lname,
           url: result.Key,
         });
-        console.log('tu jestem git');
         photoElement.save((err) => {
           console.log(err);
         });
@@ -100,7 +97,6 @@ function handleFormPost(app, path, fs, db) {
     readStream.pipe(res);
   });
   app.delete('/deleteElement', (req, res) => {
-    console.log(req.body.url);
     db.collection('photos').deleteOne({ _id: ObjectId(req.body.id) });
     // let categoryObject = `${req.body.category}/${req.body.object}`;
     // res.redirect('/gallery/' + categoryObject);

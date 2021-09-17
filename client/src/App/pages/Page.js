@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from './Home';
 import Default from './Default';
-import Id from './Id';
 import Category from './Category';
 import Eq from './Eq';
 import Gallery from './Gallery';
@@ -12,20 +11,6 @@ import ObjectComp from './ObjectComp';
 import Login from './Login';
 
 const Page = () => {
-  useEffect(() => {
-    console.log('halo_page');
-    // getCookies();
-  }, []);
-  // const getCookies = () => {
-  //   fetch('/getcookie')
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       setAdmin(data.admin);
-  //     });
-  // };
-
   return (
     <div className="page-container">
       <Switch>

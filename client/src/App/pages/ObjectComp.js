@@ -17,7 +17,7 @@ const ObjectComp = () => {
   useEffect(() => {
     getGalleryObject();
     getCookies();
-  }, []);
+  }, [window.location.pathname]);
   const getCookies = () => {
     fetch('/getcookie')
       .then((res) => {
@@ -90,13 +90,8 @@ const ObjectComp = () => {
     }
   };
   window.onclick = function (event) {
-    console.log(event.target);
     if (event.target === modal) {
-      console.log(event.target);
-      console.log('dziala');
-      console.log(modalVisible);
       setModalVisible((modalVisible) => !modalVisible);
-      console.log(modalVisible);
     }
   };
 
