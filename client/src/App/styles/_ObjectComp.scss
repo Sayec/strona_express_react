@@ -33,8 +33,6 @@ div.modal-container {
   transition: transform 1s;
   z-index: 1;
   div.modal-content {
-    // width: 0%;
-    // height: 0%;
     background-color: rgb(59, 59, 59);
     position: absolute;
     top: 50%;
@@ -84,13 +82,13 @@ div.modal-container.modal-visible {
   div.modal-container.modal-visible {
     div.modal-content {
       width: 70%;
-      height: 80%;
+      height: 250px;
     }
   }
 }
 
 @media (max-width: 500px) {
-  div.modal-container.modal-visible {
+  div.modal-container {
     div.modal-content {
       width: 100%;
       height: 250px;
@@ -103,6 +101,12 @@ div.modal-container.modal-visible {
       p {
         bottom: -2%;
       }
+    }
+  }
+  div.modal-container.modal-visible {
+    div.modal-content {
+      width: 100%;
+      height: 250px;
     }
   }
 }

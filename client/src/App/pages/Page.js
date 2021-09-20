@@ -8,7 +8,7 @@ import Eq from './Eq';
 import Gallery from './Gallery';
 import About from './About';
 import ObjectComp from './ObjectComp';
-import Login from './Login';
+// import Login from './Login';
 
 const Page = () => {
   return (
@@ -34,7 +34,7 @@ const Page = () => {
           render={(props) => <Category {...props} admin={admin} />}
         /> */}
         <Route path="/gallery/:category" component={Category} />
-        <Route path="/login" component={Login} />
+        {/* <Route path="/login" component={Login} /> */}
         <Route path="/" component={Default} />
       </Switch>
     </div>

@@ -15,7 +15,7 @@ function homeRoutes(app, path) {
         httpOnly: true,
       });
     }
-    res.redirect('/login');
+    res.redirect(req.originalUrl);
   });
   app.get('/getcookie', (req, res) => {
     //show the saved cookies

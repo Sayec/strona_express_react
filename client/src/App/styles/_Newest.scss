@@ -1,7 +1,7 @@
 .newest {
   // height: 200px;
-  position: absolute;
-  bottom: 50px;
+  // position: absolute;
+  // bottom: 50px;
   width: 100%;
   border-top: 2px solid rgb(184, 184, 184);
   h2 {
@@ -27,6 +27,29 @@
           width: 100%;
           &:hover {
             transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 500px) {
+  .newest {
+    .newest-photo-container {
+      flex-direction: column;
+      width: 70%;
+      margin: 20px auto;
+      height: auto;
+      .newest-element {
+        background-color: transparent;
+        margin: 0;
+        margin: 10px 30px;
+        height: auto;
+        a {
+          width: 100%;
+          height: 100%;
+          img {
+            width: 100%;
           }
         }
       }

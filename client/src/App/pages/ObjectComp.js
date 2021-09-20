@@ -42,13 +42,11 @@ const ObjectComp = () => {
         setObjectElements([...objectElements]);
       });
   };
-  let modal = document.querySelector('.modal-container');
-  let modalData = document.getElementsByClassName('modal-content')[0];
+
   let elementList = () => {
     switch (searchName) {
       case '':
         return objectElements.map((element) => {
-          console.log('tutak' + element.title);
           const { _id, url, title, description } = element;
           return (
             <Element
@@ -89,12 +87,13 @@ const ObjectComp = () => {
           });
     }
   };
-  window.onclick = function (event) {
-    if (event.target === modal) {
+  const modal = document.querySelector('div.modal-container');
+  let modalData = document.getElementsByClassName('modal-content')[0];
+  const handleClickModalContainer = (e) => {
+    if (e.target === modal) {
       setModalVisible((modalVisible) => !modalVisible);
     }
   };
-
   const addButtonOnClick = () => {
     setIsAddActive(!isAddActive);
   };
@@ -141,6 +140,7 @@ const ObjectComp = () => {
         <div className="break-line"></div>
       </div>
       <div
+        onClick={handleClickModalContainer}
         className={
           modalVisible ? 'modal-container modal-visible' : 'modal-container'
         }

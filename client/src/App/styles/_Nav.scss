@@ -3,7 +3,7 @@ $secondary-color: #343c43;
 
 .nav-container {
   background-color: black;
-  overflow: hidden;
+  // overflow: hidden;
   height: 60px;
   width: 100%;
   .nav {
@@ -13,12 +13,39 @@ $secondary-color: #343c43;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    .dropdown {
+      position: relative;
+      .dropdown-menu {
+        position: absolute;
+        background-color: rgb(124, 124, 124);
+        opacity: 0;
+        transition: 0.3s;
+        transform: translateY(-10px);
+      }
+
+      .dropdown-menu.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     a {
       color: white;
       text-decoration: none;
       padding: 10px;
       transition: 1s;
       font-size: 20px;
+      &:hover {
+        color: rgb(180, 180, 180);
+      }
+    }
+    button {
+      background-color: transparent;
+      color: white;
+      border: 0;
+      font-size: 20px;
+      padding: 10px;
+      transition: 1s;
+      cursor: pointer;
       &:hover {
         color: rgb(180, 180, 180);
       }
@@ -49,6 +76,9 @@ $secondary-color: #343c43;
       a {
         font-size: 20px;
       }
+      button {
+        font-size: 20px;
+      }
     }
   }
 }
@@ -60,6 +90,9 @@ $secondary-color: #343c43;
     .nav {
       width: 80%;
       a {
+        font-size: 18px;
+      }
+      button {
         font-size: 18px;
       }
     }
