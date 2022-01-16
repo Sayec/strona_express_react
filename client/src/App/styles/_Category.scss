@@ -1,34 +1,35 @@
 div.categoryStyles {
   display: flex;
   flex-wrap: wrap;
-  a {
-    text-decoration: none;
-  }
-  div.categoryElement {
+  margin-top: 20px;
+  div {
+    flex-basis: 25%;
+    // align-items: center;
+    justify-content: center;
     display: flex;
-    flex-direction: column;
-    margin: 20px;
-    button {
-      width: 200px;
-    }
-    div.insideCategory {
-      width: 200px;
-      height: 200px;
-      display: flex;
-      flex-direction: column;
-      background-color: #333;
-
+    a {
       text-decoration: none;
-      div.blockDiv {
-        height: 90%;
-        width: 100%;
-        background-color: #888;
-      }
-      span {
-        text-align: center;
-        color: white;
+
+      div.insideCategory {
+        width: 200px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        background-color: #333;
+
         text-decoration: none;
-        display: inline-block;
+        div.blockDiv {
+          flex-basis: 90%;
+          width: 100%;
+          background-color: #888;
+        }
+        span {
+          text-align: center;
+          color: white;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 20px;
+        }
       }
     }
   }

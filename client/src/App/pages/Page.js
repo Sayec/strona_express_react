@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from './Home';
@@ -11,8 +11,29 @@ import ObjectComp from './ObjectComp';
 // import Login from './Login';
 
 const Page = () => {
+  const [newestHeight, setNewestHeight] = useState(0);
+  // const navHeight = document.querySelector('.nav-container').scrollHeight;
+  // const pageContainer = document.querySelector('page-container');
+  // pageContainer.style.padding = `${newestHeight}px`;
+  //
+  useEffect(() => {
+    console.log(window.innerWidth);
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 500) {
+        setNewestHeight(document.querySelector('.newest').scrollHeight);
+        console.log(document.querySelector('.newest').scrollHeight);
+      } else {
+        setNewestHeight(0);
+      }
+    });
+  }, []);
   return (
-    <div className="page-container">
+    <div
+      className="page-container"
+      style={{
+        paddingBottom: newestHeight,
+      }}
+    >
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />

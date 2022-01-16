@@ -13,6 +13,7 @@ const Newest = ({ newest }) => {
                 replace
               >
                 <img src={`/images/${element.url}`} alt="" />
+                <div className="show-name">{element.object}</div>
               </Link>
             </div>
           );

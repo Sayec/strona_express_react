@@ -17,9 +17,11 @@ const App = () => {
         setNewest(...newest, data);
       });
   };
+  if (!newest.length) return null;
   return (
     <div>
       {<Nav />}
+
       {<Page />}
       {<Newest newest={newest} />}
     </div>

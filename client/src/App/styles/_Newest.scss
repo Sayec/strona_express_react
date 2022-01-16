@@ -1,16 +1,19 @@
 .newest {
   // height: 200px;
-  // position: absolute;
-  // bottom: 50px;
+  position: fixed;
+  bottom: 0px;
   width: 100%;
   border-top: 2px solid rgb(184, 184, 184);
+  padding-bottom: 20px;
+  background-color: #343c43;
   h2 {
     text-align: center;
     color: white;
+    padding: 10px;
   }
   .newest-photo-container {
     display: flex;
-    height: 100%;
+    // height: 100%;
     height: 200px;
     .newest-element {
       height: 100%;
@@ -21,12 +24,37 @@
       background-color: white;
       margin: 0 20px;
       overflow: hidden;
+      position: relative;
+      .show-name {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.3);
+        height: 25%;
+        width: 100%;
+        transform: translateY(100%);
+        bottom: 0;
+        left: 0;
+        transition: 0.3s ease-in;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+          transform: translateY(0%);
+        }
+      }
       a {
         width: 100%;
+        // height: 100%;
+        text-decoration: none;
+        color: black;
         img {
           width: 100%;
+          transition: 0.3s ease-in;
           &:hover {
             transform: scale(1.1);
+          }
+          &:hover + .show-name {
+            transform: translateY(0%);
           }
         }
       }
@@ -35,6 +63,7 @@
 }
 @media (max-width: 500px) {
   .newest {
+    position: static;
     .newest-photo-container {
       flex-direction: column;
       width: 70%;
