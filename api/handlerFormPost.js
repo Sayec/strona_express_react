@@ -60,7 +60,7 @@ function handleFormPost(app, path, fs, db) {
     upload.single('file' /* name attribute of <file> element in your form */),
     async (req, res) => {
       const file = req.file;
-      console.log(file);
+      console.log(req.body);
       const result = await uploadFile(file);
       await unlinkFile(file.path);
       if (
@@ -98,18 +98,30 @@ function handleFormPost(app, path, fs, db) {
   });
   app.delete('/deleteElement', (req, res) => {
     db.collection('photos').deleteOne({ _id: ObjectId(req.body.id) });
-    // let categoryObject = `${req.body.category}/${req.body.object}`;
-    // res.redirect('/gallery/' + categoryObject);
     deleteFile(req.body.url);
-    // fs.unlink(req.body.url, function (err) {
-    //   if (err) return console.log(err);
-    //   console.log('usunieto element');
-    // });
   });
+
+  app.post('/editElement', (req, res) => {
+    const { category, name } = req.body;
+    db.collection('photos').updateOne(
+      { _id: ObjectId(req.body._id) },
+      {
+        $set: {
+          title: req.body.values.fName,
+          description: req.body.values.sName,
+          category: req.body.category,
+          object: req.body.object,
+        },
+      }
+    );
+    let categoryObject = `${req.body.category}/test`;
+    res.redirect('/gallery/' + categoryObject);
+  });
+
   app.delete('/deleteObjectInCategory', (req, res) => {
     const { category, name } = req.body;
     let i;
-    console.log(req.body);
+    // console.log(req.body);
     db.collection('objects').deleteOne({ category, name });
     db.collection('photos')
       .find({})

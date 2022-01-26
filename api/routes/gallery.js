@@ -20,7 +20,7 @@ function galleryRoutes(app, path, db) {
   app.get('/api/getGalleryObject', (req, res) => {
     const { category, object } = req.query;
     Photos.find({ category, object }, (err, data) => {
-      console.log(data);
+      // console.log(data);
       res.json(data);
     });
   });
@@ -29,7 +29,7 @@ function galleryRoutes(app, path, db) {
       .sort({ date: -1 })
       .limit(parseInt(req.params.numberOfElements))
       .exec((err, data) => {
-        console.log(data);
+        // console.log(data);
         res.json(data);
       });
   });
