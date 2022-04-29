@@ -65,21 +65,7 @@ const Nav = () => {
     <div className="nav-container">
       <nav className="nav">
         <Link to={'/gallery'}>Galeria</Link>
-        <Link to={'/about'}>O mnie</Link>
-        <div className="dropdown" data-dropdown>
-          <button id="login">Login</button>{' '}
-          <div className={isActive ? 'dropdown-menu active' : 'dropdown-menu'}>
-            <form onSubmit={sendData}>
-              <label for="username">Username:</label>{' '}
-              <input type="text" onChange={handleUserNameChange} /> <br />
-              <label for="password">Password:</label>{' '}
-              <input type="password" onChange={handlePasswordChange} /> <br />
-              <button type="submit" value="Submit">
-                Login
-              </button>
-            </form>
-          </div>{' '}
-        </div>
+        <Link to={'/about'}>Sprzęt</Link>
       </nav>
     </div>
   );

@@ -14,8 +14,9 @@
       flex-direction: column;
       background-color: #333;
       text-decoration: none;
-      div.blockDiv {
-        flex-basis: 90%;
+      img.blockDiv {
+        // flex-basis: 100%;
+        height: 100%;
         background-color: #888;
       }
       span {
@@ -32,9 +33,18 @@
   opacity: 0;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   div.galleryStyles {
     align-items: center;
     justify-content: center;
+    a {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      div.insideGall {
+        width: 300px;
+        height: 300px;
+      }
+    }
   }
 }

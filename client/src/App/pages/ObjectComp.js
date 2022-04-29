@@ -15,6 +15,7 @@ const ObjectComp = () => {
   let { category, object } = useParams();
   const [admin, setAdmin] = useState(false);
   useEffect(() => {
+    console.log('OBJECTOMP');
     getGalleryObject();
     getCookies();
   }, [window.location.pathname]);

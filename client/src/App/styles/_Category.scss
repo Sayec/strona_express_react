@@ -1,12 +1,17 @@
+div.searchForm input {
+  width: 60%;
+}
+
 div.categoryStyles {
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
-  div {
+  div.categoryElement {
     flex-basis: 25%;
     // align-items: center;
     justify-content: center;
     display: flex;
+    margin: 20px;
     a {
       text-decoration: none;
 
@@ -34,9 +39,23 @@ div.categoryStyles {
     }
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 850px) {
+  div.searchForm input {
+    width: 90%;
+  }
   div.categoryStyles {
     align-items: center;
     justify-content: center;
+    div.categoryElement {
+      a {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        div.insideCategory {
+          width: 300px;
+          height: 300px;
+        }
+      }
+    }
   }
 }

@@ -11,6 +11,11 @@ function galleryRoutes(app, path, db) {
       res.json(data);
     });
   });
+  app.get('/api/getAllPhotos', (req, res) => {
+    Photos.find({}, (err, data) => {
+      res.json(data);
+    });
+  });
   app.get('/api/getObjects', (req, res) => {
     const { category, object } = req.query;
     Objects.find({ category }, (err, data) => {

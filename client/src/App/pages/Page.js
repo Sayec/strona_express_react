@@ -8,18 +8,14 @@ import Eq from './Eq';
 import Gallery from './Gallery';
 import About from './About';
 import ObjectComp from './ObjectComp';
-// import Login from './Login';
+import Login from './Login';
 
 const Page = () => {
   const [newestHeight, setNewestHeight] = useState(0);
-  // const navHeight = document.querySelector('.nav-container').scrollHeight;
-  // const pageContainer = document.querySelector('page-container');
-  // pageContainer.style.padding = `${newestHeight}px`;
-  //
   useEffect(() => {
-    console.log(window.innerWidth);
+    console.log('PAGE');
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 500) {
+      if (window.innerWidth > 850) {
         setNewestHeight(document.querySelector('.newest').scrollHeight);
         console.log(document.querySelector('.newest').scrollHeight);
       } else {
@@ -41,8 +37,10 @@ const Page = () => {
         {/* <Route
           exact
           path="/gallery"
-          render={(props) => <Gallery {...props} admin={admin} />}
-        /> */}
+          render={(props) => (
+            <Gallery {...props} gallery={gallery} photos={photos} />
+          )} */}
+        {/* /> */}
         <Route path="/eq" component={Eq} />
         {/* <Route path="/upload/:category/:object" component={Id} /> */}
         <Route path="/gallery/:category/:object" component={ObjectComp} />
@@ -55,7 +53,7 @@ const Page = () => {
           render={(props) => <Category {...props} admin={admin} />}
         /> */}
         <Route path="/gallery/:category" component={Category} />
-        {/* <Route path="/login" component={Login} /> */}
+        <Route path="/login" component={Login} />
         <Route path="/" component={Default} />
       </Switch>
     </div>

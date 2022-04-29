@@ -6,6 +6,7 @@ import Newest from './pages/Newest';
 const App = () => {
   const [newest, setNewest] = useState([]);
   useEffect(() => {
+    console.log('APP');
     getNewestPhotos();
   }, []);
   const getNewestPhotos = () => {

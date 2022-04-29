@@ -2,14 +2,14 @@ $primary-color: rgb(122, 168, 255);
 $secondary-color: #343c43;
 
 .nav-container {
-  background-color: #373737;
+  background-color: #355c7d;
   border-bottom: 1px solid #747474;
   height: 60px;
   width: 100%;
   position: relative;
+  display: flex;
+  justify-content: center;
   .nav {
-    position: absolute;
-    left: 20%;
     height: 100%;
     transition: 1s ease-in;
     width: 35vw;

@@ -5,7 +5,7 @@
   width: 100%;
   border-top: 1px solid #747474;
   padding-bottom: 20px;
-  background-color: #373737;
+  background-color: #355c7d;
   h2 {
     text-align: center;
     color: white;
@@ -61,12 +61,12 @@
     }
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 850px) {
   .newest {
     position: static;
     .newest-photo-container {
       flex-direction: column;
-      width: 70%;
+      width: 90%;
       margin: 20px auto;
       height: auto;
       .newest-element {

@@ -52,7 +52,6 @@ const Element = ({
       fName: title,
       sName: description,
     }));
-    console.log(values);
   };
   const handleFNameChange = (e) => {
     e.persist();
@@ -69,7 +68,6 @@ const Element = ({
     }));
   };
   const getGalleryObject = () => {
-    console.log(values);
     fetch(
       '/api/getGalleryObject?' +
         new URLSearchParams({

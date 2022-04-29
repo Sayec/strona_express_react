@@ -70,11 +70,22 @@ div.modal-container.modal-visible {
   transform: scale(1);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 850px) {
   div.elements-container {
-    flex-direction: column;
+    // flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     div {
-      height: auto;
+      display: flex;
+      flex-basis: 100%;
+      // width: 300px;
+      justify-content: center;
+
+      div.elementContainer {
+        // width: 300px;
+        // height: 300px;
+      }
     }
   }
 }
