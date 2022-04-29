@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 const Gallery = () => {
-  // const [gallery, setGallery] = useState([]);
   const [values, setValues] = useState({
     categoryName: '',
   });
@@ -12,7 +11,6 @@ const Gallery = () => {
   const [admin, setAdmin] = useState(false);
   const [urlPhoto, setUrlPhoto] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  // const [photos, setPhotos] = useState([]);
   useEffect(async () => {
     let objectsUrls;
     const photos = await getAllPhotos();
